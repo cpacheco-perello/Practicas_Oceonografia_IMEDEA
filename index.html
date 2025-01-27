@@ -4,33 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi Página GitHub Pages</title>
-  <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
 </head>
 <body>
   <h1>Bienvenidos a mi repositorio</h1>
   <p>Este es el contenido de la página web que estás mostrando en GitHub Pages.</p>
 
-  <!-- Elemento para mostrar el contenido del README -->
-  <div id="contenido-readme"></div>
+  <!-- Mostrar el GIF en la página -->
+  <img src="ruta/a/tu/gif.gif" alt="Descripción del GIF">
 
-  <script>
-    // Crear una instancia de Showdown para convertir Markdown a HTML
-    var converter = new showdown.Converter();
-
-    // URL del README.md en tu repositorio (cambia esto por la URL real)
-    var readmeUrl = "https://raw.githubusercontent.com/cpacheco-perello/Practicas_Oceonografia_IMEDEA/master/README.md
-";
-
-    // Función para cargar el README.md desde GitHub y mostrarlo
-    fetch(readmeUrl)
-      .then(response => response.text())
-      .then(markdown => {
-        var html = converter.makeHtml(markdown); // Convertir Markdown a HTML
-        document.getElementById("contenido-readme").innerHTML = html; // Mostrar el contenido en el div
-      })
-      .catch(error => {
-        console.error('Error al cargar el README.md:', error);
-      });
-  </script>
 </body>
 </html>
