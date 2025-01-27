@@ -1,6 +1,7 @@
 - Filtrado_Mediterraneo.m
 
-  Filtraje de los datos twosat Meta3.2 de AVISO, selección de los datos en el Mediterráneo  
+  Filtraje de los datos twosat Meta3.2 de AVISO, selección de los datos en el Mediterráneo
+  Y guardado de los datos en archivos .mat. 
 
 - CodigoAnimacionMapa.m:
   
