@@ -192,18 +192,21 @@ for dia = time(1):time(2)
 
    
     %% Representacion 
-
+    % TITULO --
+   
+    dia_Actual_Fecha = start_date + days(dia);
+    title(['Mapa del Mediterráneo  Fecha: ' datestr(dia_Actual_Fecha)] , 'FontSize', 16);
 
     % Crear un objeto gráfico vacío para la leyenda del color anticiclónico (rojo)
-    h_legend_anticiclonico = plot(NaN, NaN, 'o', 'MarkerFaceColor', 'red', 'MarkerEdgeColor', 'none');
+    h_legend_anticiclonico = plot(NaN, NaN, 'o', 'MarkerFaceColor', colorCic, 'MarkerEdgeColor', 'none');
     
     % Crear un objeto gráfico vacío para la leyenda del color ciclónico (azul)
-    h_legend_ciclonico = plot(NaN, NaN, 'o', 'MarkerFaceColor', 'blue', 'MarkerEdgeColor', 'none');
+    h_legend_ciclonico = plot(NaN, NaN, 'o', 'MarkerFaceColor', colorAnc, 'MarkerEdgeColor', 'none');
     
     % Añadir la leyenda manualmente
     legend([h_legend_anticiclonico, h_legend_ciclonico], ...
     {'Anticiclónico', 'Ciclónico'}, ...
-    'Location', 'bestoutside', 'FontSize', 12);
+    'Location', 'northoutside', 'FontSize', 12);
 
     % colorbar ---
     colormap(cmap);
@@ -212,17 +215,18 @@ for dia = time(1):time(2)
     % Muestra la barra de colores
     cb = colorbar; 
 
-    cb.Title.String=TituloColorbar;
+    cb.Title.String=(TituloColorbar);
+    cb.Title.FontSize = 12;
 
     % Ajusta la transparencia del colorbar
 
 
     % Opcional: puedes ajustar la posición del colorbar si lo deseas
     % cb.Position = [0.85, 0.1, 0.03, 0.8];  % Ajusta la posición del colorbar
+
     
-    % TITULO --
-    dia_Actual_Fecha = start_date + days(dia);
-    title(['Mapa del Mediterráneo  Fecha: ' datestr(dia_Actual_Fecha)] );
+    
+
     
     %% CAPTURA DE FRAME Y GUARDADO DE VIDEO 
     frame = getframe(gcf); 
@@ -239,10 +243,10 @@ for dia = time(1):time(2)
      % Guardar en el archivo GIF
     if dia == time(1)
         % Crear el archivo GIF en la primera iteración
-        imwrite(imind, cm, gif_filename, 'gif', 'Loopcount', inf, 'DelayTime', 0.25);
+        imwrite(imind, cm, gif_filename, 'gif', 'Loopcount', inf, 'DelayTime', 0.15);
     else
         % Agregar cuadros al GIF en las iteraciones posteriores
-        imwrite(imind, cm, gif_filename, 'gif', 'WriteMode', 'append', 'DelayTime', 0.25);
+        imwrite(imind, cm, gif_filename, 'gif', 'WriteMode', 'append', 'DelayTime', 0.15);
     end
     
     % Limpiar la figura para la siguiente iteración
