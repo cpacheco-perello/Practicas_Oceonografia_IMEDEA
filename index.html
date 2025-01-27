@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi Página GitHub Pages con Pestañas</title>
   <style>
-    /* Estilo básico de las pestañas */
     .tabs {
       display: flex;
       cursor: pointer;
@@ -34,43 +33,39 @@
 
   <!-- Pestañas de navegación -->
   <div class="tabs">
-    <div class="tab" onclick="showTab(0)">Pestaña 1</div>
-    <div class="tab" onclick="showTab(1)">Pestaña 2</div>
-    <div class="tab" onclick="showTab(2)">Pestaña 3</div>
+    <div class="tab" onclick="loadTab('pestana1')">Pestaña 1</div>
+    <div class="tab" onclick="loadTab('pestana2')">Pestaña 2</div>
+    <div class="tab" onclick="loadTab('pestana3')">Pestaña 3</div>
   </div>
 
-  <!-- Contenido de cada pestaña -->
-  <div id="content-0" class="tab-content">
-    <h2>Contenido de la Pestaña 1</h2>
-    <p>Aquí puedes poner el contenido de la primera pestaña.</p>
-  </div>
-  <div id="content-1" class="tab-content">
-    <h2>Contenido de la Pestaña 2</h2>
-    <p>Aquí puedes poner el contenido de la segunda pestaña.</p>
-  </div>
-  <div id="content-2" class="tab-content">
-    <h2>Contenido de la Pestaña 3</h2>
-    <p>Aquí puedes poner el contenido de la tercera pestaña.</p>
+  <!-- Contenedor para el contenido cargado -->
+  <div id="content-container">
+    <!-- Aquí se cargará el contenido de las pestañas -->
   </div>
 
   <script>
-    // Mostrar el contenido de la pestaña seleccionada
-    function showTab(tabIndex) {
-      const contents = document.querySelectorAll('.tab-content');
-      const tabs = document.querySelectorAll('.tab');
+    // Función para cargar el contenido de las pestañas desde archivos externos
+    function loadTab(tabName) {
+      const container = document.getElementById('content-container');
 
-      // Ocultar todos los contenidos y quitar la clase activa de las pestañas
-      contents.forEach(content => content.classList.remove('active'));
-      tabs.forEach(tab => tab.style.backgroundColor = '#f1f1f1');
+      // Limpiar el contenido actual
+      container.innerHTML = '';
 
-      // Mostrar el contenido de la pestaña seleccionada y resaltar la pestaña
-      document.getElementById(`content-${tabIndex}`).classList.add('active');
-      tabs[tabIndex].style.backgroundColor = '#ddd';
+      // Cargar el archivo HTML correspondiente
+      fetch(`${tabName}.html`)
+        .then(response => response.text())
+        .then(data => {
+          // Insertar el contenido en el contenedor
+          container.innerHTML = data;
+        })
+        .catch(error => {
+          console.error('Error al cargar el contenido:', error);
+          container.innerHTML = '<p>Error al cargar el contenido.</p>';
+        });
     }
 
-    // Iniciar con la primera pestaña activa
-    showTab(0);
+    // Cargar por defecto el contenido de la primera pestaña
+    loadTab('pestana1');
   </script>
 </body>
 </html>
-
