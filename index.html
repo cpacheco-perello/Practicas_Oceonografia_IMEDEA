@@ -3,15 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Página GitHub Pages</title>
+  <title>Mi Página GitHub Pages con Pestañas</title>
+  <style>
+    /* Estilo básico de las pestañas */
+    .tabs {
+      display: flex;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    .tab {
+      padding: 10px 20px;
+      background-color: #f1f1f1;
+      margin-right: 5px;
+      border: 1px solid #ddd;
+    }
+    .tab:hover {
+      background-color: #ddd;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <h1>Bienvenidos a mi repositorio</h1>
   <p>Este es el contenido de la página web que estás mostrando en GitHub Pages.</p>
 
-  <!-- Mostrar el GIF en la página -->
-  <img src="https://raw.githubusercontent.com/cpacheco-perello/Practicas_Oceonografia_IMEDEA/master/animacion_mapas.gif
-" alt="Descripción del GIF">
+  <!-- Pestañas de navegación -->
+  <div class="tabs">
+    <div class="tab" onclick="showTab(0)">Pestaña 1</div>
+    <div class="tab" onclick="showTab(1)">Pestaña 2</div>
+    <div class="tab" onclick="showTab(2)">Pestaña 3</div>
+  </div>
 
+  <!-- Contenido de cada pestaña -->
+  <div id="content-0" class="tab-content">
+    <h2>Contenido de la Pestaña 1</h2>
+    <p>Aquí puedes poner el contenido de la primera pestaña.</p>
+  </div>
+  <div id="content-1" class="tab-content">
+    <h2>Contenido de la Pestaña 2</h2>
+    <p>Aquí puedes poner el contenido de la segunda pestaña.</p>
+  </div>
+  <div id="content-2" class="tab-content">
+    <h2>Contenido de la Pestaña 3</h2>
+    <p>Aquí puedes poner el contenido de la tercera pestaña.</p>
+  </div>
+
+  <script>
+    // Mostrar el contenido de la pestaña seleccionada
+    function showTab(tabIndex) {
+      const contents = document.querySelectorAll('.tab-content');
+      const tabs = document.querySelectorAll('.tab');
+
+      // Ocultar todos los contenidos y quitar la clase activa de las pestañas
+      contents.forEach(content => content.classList.remove('active'));
+      tabs.forEach(tab => tab.style.backgroundColor = '#f1f1f1');
+
+      // Mostrar el contenido de la pestaña seleccionada y resaltar la pestaña
+      document.getElementById(`content-${tabIndex}`).classList.add('active');
+      tabs[tabIndex].style.backgroundColor = '#ddd';
+    }
+
+    // Iniciar con la primera pestaña activa
+    showTab(0);
+  </script>
 </body>
 </html>
+
