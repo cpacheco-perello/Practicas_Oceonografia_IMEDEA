@@ -14,44 +14,58 @@
       color: #333;
     }
 
+    /* Contenedor principal */
+    .container {
+      display: flex;
+      flex-direction: column; /* Alinea todo el contenido de forma vertical */
+      /* Centra todos los elementos dentro del contenedor */
+      width: 100%;
+    }
+
+    /* Contenedor para el encabezado y las pestañas */
+    .header-tabs {
+      display: flex;
+      justify-content: flex-start; /* Asegura que el encabezado y las pestañas se distribuyan */
+      align-items: center;
+      background-color: rgb(148, 217, 44); /* Alinea los elementos verticalmente */
+      width: 100%;
+      padding: 0px 10px 0px 50px;
+    }
+
     /* Encabezado */
     h1 {
-      background-color: #4CAF50;
       color: white;
-      text-align: left;
-      padding: 20px 0;
+      text-align: left; /* Mantener el texto del encabezado alineado a la izquierda */
       margin: 0;
+      padding: 5px 30px 0px 20px;
+      font-size: 1.5rem;
     }
 
     /* Contenedor de las pestañas */
     .tabs {
       display: flex;
       cursor: pointer;
-      margin: 20px auto;
-      max-width: 800px;
-      justify-content: space-around;
-      background-color: #ddd;
-      border-radius: 5px;
+      text-align: left; /* Esto alinea las pestañas a la izquierda */
     }
 
+    /* Pestañas */
     .tab {
-      padding: 15px 25px;
-      background-color: #f1f1f1;
-      margin-right: 5px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
+      color: black;
+      padding: 10px 20px;
+      font-size: 16px;
       text-align: center;
-      flex: 1;
     }
 
     .tab:hover {
-      background-color: #e2e2e2;
+      background-color: rgb(115, 208, 225);
+      border-radius: 5%;
     }
 
+    /* Pestaña activa */
     .tab.active {
-      background-color: #4CAF50;
-      color: white;
+      background-color: white;
       font-weight: bold;
+      border-radius: 5%;
     }
 
     /* Estilo del contenido */
@@ -59,11 +73,11 @@
       display: none;
       max-width: 800px;
       margin: 20px auto;
-      padding: 20px;
-      background-color: white;
+      background-color: #f4f4f4;;
       border-radius: 5px;
       border: 1px solid #ddd;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
     }
 
     /* Mostrar contenido activo */
@@ -78,22 +92,48 @@
       display: block;
       margin: 20px 0;
     }
+
+    /* Logo */
+    .logo {
+      width: 80px; /* Ajusta el tamaño del logo */
+      height: auto;
+      margin-right: 10px; /* Añade espacio entre el logo y el título */
+    }
+
+
+    /* TEXTOS */
+
+    p {
+      line-height: 1.6;
+      text-align: left;
+      margin-bottom: 20px;
+      padding: 0px 0px 0px 50px;
+      
+    }
+
   </style>
 </head>
 <body>
-  <h1>Practicas Oceonografia IMEDEA, Carlos Pacheco Perello </h1>
-  /*<p style="text-align: center;">Este es el contenido de la página web que estás mostrando en GitHub Pages.</p>*/
+  <div class="container">
+    <!-- Contenedor para el encabezado y las pestañas -->
+    <div class="header-tabs">
 
-  <!-- Pestañas de navegación -->
-  <div class="tabs">
-    <div class="tab" onclick="loadTab('pestana1')">Pestaña 1</div>
-    <div class="tab" onclick="loadTab('pestana2')">Pestaña 2</div>
-    <div class="tab" onclick="loadTab('pestana3')">Pestaña 3</div>
-  </div>
+      <img src="logo-c-4-2000x1174.png" alt="Logo" class="logo">
 
-  <!-- Contenedor para el contenido cargado -->
-  <div id="content-container">
-    <!-- Aquí se cargará el contenido de las pestañas -->
+      <h1>Practicas Oceanografía IMEDEA, Carlos Pacheco Perelló</h1>
+
+      <!-- Pestañas de navegación -->
+      <div class="tabs">
+        <div class="tab" onclick="loadTab('pestana1')">Mapa</div>
+        <div class="tab" onclick="loadTab('pestana2')">Estadísticas</div>
+        <div class="tab" onclick="loadTab('pestana3')">Documentación</div>
+      </div>
+    </div>
+
+    <!-- Contenedor para el contenido cargado -->
+    <div id="content-container">
+      <!-- Aquí se cargará el contenido de las pestañas -->
+    </div>
   </div>
 
   <script>
@@ -119,10 +159,14 @@
       // Cambiar el estado activo de las pestañas
       const tabs = document.querySelectorAll('.tab');
       tabs.forEach(tab => {
-        tab.classList.remove('active');
+        tab.classList.remove('active'); // Eliminar la clase 'active' de todas las pestañas
       });
-      const activeTab = Array.from(tabs).find(tab => tab.textContent.toLowerCase() === tabName.replace('pestana', 'Pestaña '));
-      activeTab.classList.add('active');
+
+      // Identificar la pestaña activa y agregarle la clase 'active'
+      const activeTab = Array.from(tabs).find(tab => tab.getAttribute('onclick') === `loadTab('${tabName}')`);
+      if (activeTab) {
+        activeTab.classList.add('active'); // Agregar la clase 'active' a la pestaña correspondiente
+      }
     }
 
     // Cargar por defecto el contenido de la primera pestaña
