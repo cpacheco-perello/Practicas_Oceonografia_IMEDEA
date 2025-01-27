@@ -5,31 +5,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi Página GitHub Pages con Pestañas</title>
   <style>
+    /* Estilo base de la página */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    /* Encabezado */
+    h1 {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin: 0;
+    }
+
+    /* Contenedor de las pestañas */
     .tabs {
       display: flex;
       cursor: pointer;
-      margin-bottom: 20px;
+      margin: 20px auto;
+      max-width: 800px;
+      justify-content: space-around;
+      background-color: #ddd;
+      border-radius: 5px;
     }
+
     .tab {
-      padding: 10px 20px;
+      padding: 15px 25px;
       background-color: #f1f1f1;
       margin-right: 5px;
       border: 1px solid #ddd;
+      border-radius: 5px;
+      text-align: center;
+      flex: 1;
     }
+
     .tab:hover {
-      background-color: #ddd;
+      background-color: #e2e2e2;
     }
+
+    .tab.active {
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bold;
+    }
+
+    /* Estilo del contenido */
     .tab-content {
       display: none;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+
+    /* Mostrar contenido activo */
     .tab-content.active {
       display: block;
+    }
+
+    /* Estilo de las imágenes */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px 0;
     }
   </style>
 </head>
 <body>
   <h1>Bienvenidos a mi repositorio</h1>
-  <p>Este es el contenido de la página web que estás mostrando en GitHub Pages.</p>
+  <p style="text-align: center;">Este es el contenido de la página web que estás mostrando en GitHub Pages.</p>
 
   <!-- Pestañas de navegación -->
   <div class="tabs">
@@ -62,6 +115,14 @@
           console.error('Error al cargar el contenido:', error);
           container.innerHTML = '<p>Error al cargar el contenido.</p>';
         });
+
+      // Cambiar el estado activo de las pestañas
+      const tabs = document.querySelectorAll('.tab');
+      tabs.forEach(tab => {
+        tab.classList.remove('active');
+      });
+      const activeTab = Array.from(tabs).find(tab => tab.textContent.toLowerCase() === tabName.replace('pestana', 'Pestaña '));
+      activeTab.classList.add('active');
     }
 
     // Cargar por defecto el contenido de la primera pestaña
