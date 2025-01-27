@@ -1,21 +1,41 @@
 close all;
 clear;
+%% PARAMETROS EJECUCION 
 
+
+numshade = 4; % Number of days for shadow
+colorCic= [1, 0, 0]; % Color for points ciclonic
+colorAnc= [0,0, 1];  % Color for points anticiclonic
+
+%%Define the time range for animation
+start_date = datetime(1950, 1, 1);   % INICIO DE LA CUENTA DE DIAS DE LOS DATOS
+dates = datetime(1993, 1, 1);           % Fecha inicio a representar (1993 primer año)
+days_since_start = days(dates - start_date); % Fecha inicio a representar en dias desde start_date
+% Intervalo representación
+time = [days_since_start, days_since_start + 30]; 
+
+%%Variable para rellenar los eddys
+fieldName = 'lifetime';
+cmap = parula(256); 
+
+
+
+%% CARGA DE DATOS 
+% carpeta donde estan los archivos
 folderPath = 'C:\Users\pache\Documents\AAB--Practicas\IMEDEA\CODIGO - DATOS\DATOS\twosat\Mediterraneo';
+% nombre de los archivos de datos ciclonica y anticiclonica
 filenameAnticiclonica = 'Data_twosat_Anticyclonic_long__Mediterraneo.mat';
 filenameCiclonica = 'Data_twosat_Cyclonic_long__Mediterraneo.mat';
 
+% archivos de datos ciclonica y anticiclonica
 mat_filenameANC = fullfile(folderPath, filenameAnticiclonica);
 mat_filenameCIC = fullfile(folderPath, filenameCiclonica);
-
-% Load the .mat files
+% nombre de los archivos de datos ciclonica y anticiclonica
 Data_CIC = load(mat_filenameCIC);
 Data_ANC = load(mat_filenameANC);
-
 % Get the field names of the structs
 campos_CIC = fields(Data_CIC);
 campos_ANC = fields(Data_ANC);
-
 % Access the first variable inside the struct
 Data_CIC = Data_CIC.(campos_CIC{1});
 Data_ANC = Data_ANC.(campos_ANC{1});
@@ -27,48 +47,38 @@ lat_min_bound = 27;
 lat_max_bound = 50;
 
 % Read the shapefile for country boundaries
-countries = readgeotable("C:\Users\pache\Documents\AAB--Practicas\IMEDEA\CODIGO - DATOS\\ne_10m_admin_0_countries\ne_10m_admin_0_countries.shp");
+countries = readgeotable("C:\Users\pache\Documents\AAB--Practicas\IMEDEA\CODIGO - DATOS" + ...
+    "\\ne_10m_admin_0_countries\ne_10m_admin_0_countries.shp");
 
-% Create a video object for saving the animation
+%% Create a video and gif object for saving the animation
 vidObj = VideoWriter('animacion_mapas_con_fade', 'Motion JPEG AVI');
 vidObj.Quality = 100;
 vidObj.FrameRate = 60; % Adjust frame rate as needed
 open(vidObj);
 
-% Figure setup for animation
-% Configuración para guardar video y GIF
+% Configuración para guardar GIF
 vid_filename = 'animacion_mapas.avi'; % Nombre del archivo de video
 gif_filename = 'animacion_mapas.gif'; % Nombre del archivo GIF
 
-%% Define el mapa de colores (puedes cambiarlo a otro mapa si lo prefieres)
-minLifetime = min(min(Data_ANC.lifetime),min(Data_CIC.lifetime));  % Encuentra el valor mínimo
-maxLifetime = max(max(Data_ANC.lifetime),max(Data_CIC.lifetime));  % Encuentra el valor máximo
-
-cmap = parula(256);  % Mapa de colores 'parula'
+%% Variable min and max for area fill of eddys
+minLifetime = min(min(Data_ANC.(fieldName)),min(Data_CIC.(fieldName)));  % Encuentra el valor mínimo
+maxLifetime = max(max(Data_ANC.(fieldName)),max(Data_CIC.(fieldName)));  % Encuentra el valor máximo
 
 
-% Define the time range for animation
-numshade = 4; % Number of days for shadow
-colorCic= [1, 0, 0]; % Color for points
-colorAnc= [0,0, 1]; 
 
-start_date = datetime(1950, 1, 1);
-dates = datetime(1993, 1, 1);
-days_since_start = days(dates - start_date);
-time = [days_since_start, days_since_start + 30]; % Interval for animation
+%%  Loop over the time range
 
-
-%%  Loop over the days in the time range
 for dia = time(1):time(2)
+
+     %% Mundo i condiciones de figura
     set(gcf, 'Position', [100, 100, 1920, 1080]);
-    
     worldmap([lat_min_bound lat_max_bound], [long_min_bound long_max_bound]);
     setm(gca, 'Frame', 'on', 'Grid', 'on', 'ParallelLabel', 'on', 'MeridianLabel', 'on');
 
     % Show country borders
     geoshow(countries, 'FaceColor', [0.3 0.4 0.3], 'EdgeColor', [0.5 0.5 0.5], 'LineWidth', 1);
     
-    % Loop for both CIC and ANC
+    %% Loop for both CIC and ANC
     for Turno = [1, 2]
         if Turno == 1
             Data = Data_CIC;
@@ -154,8 +164,7 @@ for dia = time(1):time(2)
         end
     end
 
-%% Representación 
-   
+
    
     dia_Actual_Fecha = start_date + days(dia);
     colormap(cmap);
@@ -165,7 +174,9 @@ for dia = time(1):time(2)
     
     % Capturar el cuadro de la figura actual
     frame = getframe(gcf); 
-    writeVideo(vidObj, frame); % Escribir el cuadro en el archivo de video
+    writeVideo(vidObj, frame);
+    writeVideo(vidObj, frame);
+   
     img = frame2im(frame); % Convertir el cuadro a imagen RGB
     [imind, cm] = rgb2ind(img, 256); % Convertir a índice de color (para GIF)
     % Pausa para controlar la velocidad de la animación
