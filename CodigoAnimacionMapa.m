@@ -2,6 +2,7 @@ close all;
 clear;
 %% PARAMETROS EJECUCION 
 
+tic;
 
 numshade = 4; % Number of days for shadow
 colorCic= [1, 0, 0]; % Color for points ciclonic
@@ -12,11 +13,13 @@ start_date = datetime(1950, 1, 1);   % INICIO DE LA CUENTA DE DIAS DE LOS DATOS
 dates = datetime(1993, 1, 1);           % Fecha inicio a representar (1993 primer año)
 days_since_start = days(dates - start_date); % Fecha inicio a representar en dias desde start_date
 % Intervalo representación
-time = [days_since_start, days_since_start + 30]; 
+time = [days_since_start, days_since_start + 7]; 
 
 %%Variable para rellenar los eddys
 fieldName = 'lifetime';
-cmap = parula(256); 
+TituloColorbar="Lifetime (Days)";
+%%Numero de veces que sera un plot un frame en el video
+numFrameVideo=4;
 
 
 
@@ -61,9 +64,16 @@ vid_filename = 'animacion_mapas.avi'; % Nombre del archivo de video
 gif_filename = 'animacion_mapas.gif'; % Nombre del archivo GIF
 
 %% Variable min and max for area fill of eddys
-minLifetime = min(min(Data_ANC.(fieldName)),min(Data_CIC.(fieldName)));  % Encuentra el valor mínimo
-maxLifetime = max(max(Data_ANC.(fieldName)),max(Data_CIC.(fieldName)));  % Encuentra el valor máximo
+idxC = find(Data_CIC.time >= time(1) & Data_CIC.time <= time(2)); % Para Data_CIC
+idxA = find(Data_ANC.time >= time(1) & Data_ANC.time <= time(2)); % Para Data_ANC
 
+minLifetime = min(min(Data_ANC.(fieldName)(idxA)),min(Data_CIC.(fieldName)(idxC)));  % Encuentra el valor mínimo
+maxLifetime = max(max(Data_ANC.(fieldName)(idxA)),max(Data_CIC.(fieldName)(idxC)));  % Encuentra el valor máximo
+if maxLifetime<80
+ cmap=parula(maxLifetime);
+else 
+    cmap=parula(80);
+end
 
 
 %%  Loop over the time range
@@ -109,13 +119,13 @@ for dia = time(1):time(2)
     tamF =@(x) 36 - 36 * (x - 1) / length(fields_ANC);
     tam_lineF =@(x) 2 - 2 * (x - 1) / length(fields_ANC);
     
-    for k = 1:length(fields_ANC)
+    for k = 1:length(fields_ANC)     %para cada dia almacenado
         
         dayANC = Data_Dias_ANC.(fields_ANC{k});
         dayCIC = Data_Dias_CIC.(fields_ANC{k});
-        alpha =alphaF(k);
-        tam =tamF(k);
-        tam_line = tam_lineF(k);
+        alpha =feval(alphaF,k);
+        tam =feval(tamF,k);
+        tam_line = feval(tam_lineF,k);
 
         % Plot points for both CIC and ANC
         if ~isempty(dayANC)
@@ -123,34 +133,49 @@ for dia = time(1):time(2)
             scatterm(dayCIC.latitude, dayCIC.longitude, tam, 'MarkerFaceColor', colorCic, 'MarkerEdgeColor', 'none');
         end
 
-        % Plot contours for both CIC and ANC
-        for i = 1:size(dayANC.effective_contour_latitude, 2)
+        % Plot individual contours for both CIC and ANC
+        parfor i = 1:size(dayANC.effective_contour_latitude, 2)
             latA = dayANC.effective_contour_latitude(:, i);
             lonA = dayANC.effective_contour_longitude(:, i);
-            if latA(1) ~= latA(end) || lonA(1) ~= lonA(end)
-                latA(end+1) = latA(1);
-                lonA(end+1) = lonA(1);
-            end
           
             geoshow(latA, lonA, 'DisplayType', 'line', 'Color', [colorAnc, alpha], 'LineWidth', tam_line);
+
+            % RELLENA CON LA VARIABLE EXTRA
             if k==1
-            % Normaliza el valor de lifetime
-            lifetime_value = dayANC.lifetime(i);
-            index = round((lifetime_value - minLifetime) / (maxLifetime - minLifetime) * (size(cmap, 1) - 1)) + 1;
-            
-            % Extrae el color correspondiente
-            color = cmap(index, :);
-            % Dibuja el polígono con relleno
-            fillm(latA, lonA,'FaceColor' ,color, ...  % Azul como color de relleno
-                'FaceAlpha', 0.9, ...         % Transparencia
-                'EdgeColor', 'none'); 
+                % Normaliza el valor 
+                lifetime_value = dayANC.(fieldName)(i);
+                index = round((lifetime_value - minLifetime) / (maxLifetime - minLifetime) * (size(cmap, 1) - 1)) + 1;
+                
+                % Extrae el color correspondiente
+                color = cmap(index, :);
+                % Dibuja el polígono con relleno
+                fillm(latA, lonA,'FaceColor' ,color, ...  % Azul como color de relleno
+                    'FaceAlpha', 0.6, ...         % Transparencia
+                    'EdgeColor', 'none'); 
             end
         end
 
-        for i = 1:size(dayCIC.effective_contour_latitude, 2)
+
+        parfor i = 1:size(dayCIC.effective_contour_latitude, 2)
             latC = dayCIC.effective_contour_latitude(:, i);
             lonC = dayCIC.effective_contour_longitude(:, i);
             geoshow(latC, lonC, 'DisplayType', 'line', 'Color', [colorCic, alpha], 'LineWidth', tam_line);
+
+            if k==1
+                % Normaliza el valor 
+                lifetime_value = dayCIC.(fieldName)(i);
+                index = round((lifetime_value - minLifetime) / (maxLifetime - minLifetime) * (size(cmap, 1) - 1)) + 1;
+                
+                % Extrae el color correspondiente
+                color = cmap(index, :);
+                % Dibuja el polígono con relleno
+             
+                fillm(latC, lonC,'FaceColor' ,color, ...  % Azul como color de relleno
+                    'FaceAlpha', 0.6, ...         % Transparencia
+                    'EdgeColor', 'none'); 
+              
+            end
+
         end
     end
     
@@ -166,16 +191,46 @@ for dia = time(1):time(2)
 
 
    
-    dia_Actual_Fecha = start_date + days(dia);
-    colormap(cmap);
-    colorbar
+    %% Representacion 
 
+
+    % Crear un objeto gráfico vacío para la leyenda del color anticiclónico (rojo)
+    h_legend_anticiclonico = plot(NaN, NaN, 'o', 'MarkerFaceColor', 'red', 'MarkerEdgeColor', 'none');
+    
+    % Crear un objeto gráfico vacío para la leyenda del color ciclónico (azul)
+    h_legend_ciclonico = plot(NaN, NaN, 'o', 'MarkerFaceColor', 'blue', 'MarkerEdgeColor', 'none');
+    
+    % Añadir la leyenda manualmente
+    legend([h_legend_anticiclonico, h_legend_ciclonico], ...
+    {'Anticiclónico', 'Ciclónico'}, ...
+    'Location', 'bestoutside', 'FontSize', 12);
+
+    % colorbar ---
+    colormap(cmap);
+    caxis([minLifetime ,maxLifetime]);  
+    
+    % Muestra la barra de colores
+    cb = colorbar; 
+
+    cb.Title.String=TituloColorbar;
+
+    % Ajusta la transparencia del colorbar
+
+
+    % Opcional: puedes ajustar la posición del colorbar si lo deseas
+    % cb.Position = [0.85, 0.1, 0.03, 0.8];  % Ajusta la posición del colorbar
+    
+    % TITULO --
+    dia_Actual_Fecha = start_date + days(dia);
     title(['Mapa del Mediterráneo  Fecha: ' datestr(dia_Actual_Fecha)] );
     
-    % Capturar el cuadro de la figura actual
+    %% CAPTURA DE FRAME Y GUARDADO DE VIDEO 
     frame = getframe(gcf); 
-    writeVideo(vidObj, frame);
-    writeVideo(vidObj, frame);
+    numF=1;
+    while numF<=numFrameVideo
+        writeVideo(vidObj, frame);
+        numF=numF+1;
+    end
    
     img = frame2im(frame); % Convertir el cuadro a imagen RGB
     [imind, cm] = rgb2ind(img, 256); % Convertir a índice de color (para GIF)
@@ -184,10 +239,10 @@ for dia = time(1):time(2)
      % Guardar en el archivo GIF
     if dia == time(1)
         % Crear el archivo GIF en la primera iteración
-        imwrite(imind, cm, gif_filename, 'gif', 'Loopcount', inf, 'DelayTime', 0.1);
+        imwrite(imind, cm, gif_filename, 'gif', 'Loopcount', inf, 'DelayTime', 0.25);
     else
         % Agregar cuadros al GIF en las iteraciones posteriores
-        imwrite(imind, cm, gif_filename, 'gif', 'WriteMode', 'append', 'DelayTime', 0.1);
+        imwrite(imind, cm, gif_filename, 'gif', 'WriteMode', 'append', 'DelayTime', 0.25);
     end
     
     % Limpiar la figura para la siguiente iteración
@@ -196,3 +251,7 @@ end
 
 % Close the video object
 close(vidObj);
+
+% Detiene el cronómetro y muestra el tiempo transcurrido
+elapsedTime = toc;
+fprintf('Tiempo de ejecución: %.4f segundos\n', elapsedTime);
