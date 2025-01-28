@@ -1,11 +1,9 @@
-
 <head>
-
   <title> Documentación | CPP-Practicas IMEDEA </title>
   <style>
     /* Estilo base de la página */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Lato', sans-serif;
       margin: 0;
       padding: 0px;
       background-color: #f4f4f4;
@@ -17,75 +15,116 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      padding: 0px;
+      
     }
 
     /* Índice de secciones */
     .index {
-      position: sticky;
-      display: flex;
-      top: 0px;
-      padding: 0px 0px 0px 50px ;
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
+      position: fixed;
+      top: 0;
+      width: 0.1%;
+      font-size: 80%;
+      padding: 0px 0px 0px 3%;
+      height: 100vh;
+      background-color: #a09b9b4c;
+      border-right: 1px solid #ddd;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
     }
 
+    .index:hover{
+      width: 10%;
+      background-color: #ffffffb0;
+    }
+    
     .index ul {
       display: flex;
+      flex-direction: column;
       list-style-type: none;
-      padding: 0px 0px 0px 20px ;
+      padding: 0;
     }
-
+    
     .index li {
-      margin: 5px 0;
-      padding: 0px 0px 0px 8px ;
+      margin: 10px 0;
+      padding-left: 8px;
     }
-
+    
     .index a {
       text-decoration: none;
       color: #007BFF;
     }
-
+    
     .index a:hover {
       text-decoration: underline;
     }
+    
+    /* Submenú para subsecciones */
+    .index .submenu {
+      display: none;
+      list-style-type: none;
+      padding-left: 0%;
+      margin: 0;
+    }
+
+    /* Mostrar submenú con encabezados */
+    .index li:hover .submenu {
+      display: block;
+      position: relative;
+      background-color: #f4f4f4;
+      padding: 5px;
+      border-left: 2px solid #007BFF;
+    }
+
+    /* Estilo para los encabezados del submenú */
+    .index .submenu h4 {
+      font-size: 70%;
+      margin: 5px 0;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .index .submenu h5 {
+      font-size: 1em;
+      margin: 5px 0;
+      color: #007BFF;
+      font-weight: normal;
+    }
+    
 
     /* Estilo de las secciones */
     section {
       margin-bottom: 40px;
-      padding: 0px 20%  0px 20% ;
+      padding: 4% 15%;
     }
 
     section h2 {
       color: #333;
       margin: 0px -5%;
-      font-size: 30px;
+      font-size: 150%;
     }
 
-    ul{
-        font-weight: bold;
+    section h4 {
+      color: #333;
+      font-size: 130%;
     }
 
-    
-    
+    ul {
+      font-weight: bold;
+    }
+
     /* Centrar el contenedor que contiene el iframe */
     .video-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px 0px 15px 0px;
- /* Hace que el contenedor ocupe el 100% de la altura de la ventana */
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     iframe {
-    width: 80%; /* Ajusta el ancho del video al 80% del contenedor */
-    max-width: 800px; /* Máximo de 800px de ancho */
-    height: 500px; /* Ajusta la altura del video */
+      padding: 2% 0%;
+      width: 80%;
+      max-width: 800px;
+      height: 500px;
     }
-    
   </style>
 </head>
 <body>
@@ -94,11 +133,28 @@
     <div class="index">
       <h3>Índice</h3>
       <ul>
-        <li><a href="#seccion1">Eddies</a></li>
-        <li><a href="#seccion2">Métodos</a></li>
-        <li><a href="#seccion3">META3.2 DT </a></li>
+        <li>
+          <a href="#seccion1">Eddies</a>
+          <div class="submenu">
+
+          </div>
+        </li>
+
+        <li>
+          <a href="#seccion2">Métodos</a>
+          <div class="submenu">
+
+          </div>
+        </li>
+        <li>
+          <a href="#seccion3">META3.2 DT</a>
+          <div class="submenu">
+            <h4><a href="#Variables">Variables</a></h4>
+          </div>
+        </li>
       </ul>
     </div>
+    
 
     <!-- Sección 1 -->
     <section id="seccion1">
@@ -108,40 +164,33 @@
         conocen como corrientes. En ocasiones, debido a la presencia de estructuras submarinas o costeras 
         y la convergencia de corrientes opuestas, se generan movimientos circulares. Estos fenómenos 
         se denominan "eddies" o remolinos.
-    </p>
+      </p>
 
-    <!-- <img style="height: auto; width: 50%; padding: 0px 0px 0px 20px;" src="eddy.jpg" alt="Imagen de Eddy"> -->
-    <!-- Contenedor para centrar el video -->
-    <div class="video-container">
+      <div class="video-container">
         <iframe src="https://www.youtube.com/embed/CCmTY0PKGDs?start=0&autoplay=1" frameborder="0" allow="accelerometer; autoplay; 
         encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        
-        
-        
-        <p  style="height: auto; width: 20%; padding: 0px 0px 0px 50px;">
-        
-            Estos patrones  se forman por todo el océano y en diferentes escalas, desde pequeños 
-            remolinos de apenas unos metros de diámetro hasta enormes estructuras que pueden abarcar cientos 
-            de kilómetros. Los remolinos desempeñan un papel importante en la dinámica oceánica, ya que contribuyen 
-            a la mezcla de nutrientes, calor y salinidad en el agua. Además, tienen un impacto significativo en los 
-            ecosistemas marinos, influyendo en la distribución de organismos como el plancton, peces y otras especies.
-        </p>
-    
-    </div>
+      </div>
 
-    <p>
-        La formación y la duración de los remolinos pueden variar dependiendo de factores como la temperatura del agua, 
-        las corrientes principales y la topografía submarina. Algunos remolinos pueden persistir durante días, mientras 
-        que otros pueden durar meses, moviéndose a través del océano mientras transportan materiales y energía.
-    </p>
-    <p>    
-        A partir de
-        su duración espacio-temporal se puede clasificar en diferentes categorias.
-    </p>
+      <p>
+        Estos patrones se forman por todo el océano y en diferentes escalas, desde pequeños 
+        remolinos de apenas unos metros de diámetro hasta enormes estructuras que pueden abarcar cientos 
+        de kilómetros. Los remolinos desempeñan un papel importante en la dinámica oceánica, ya que contribuyen 
+        a la mezcla de nutrientes, calor y salinidad en el agua.
+      </p>
+
       <ul>
-        <li style="font-size: 18px;">Microescala</li>
-        <li style="font-size: 18px;">Mesoescala</li>
-        <li style="font-size: 18px;">Macroescala</li>
+        <li  style="font-size: 18px;">Microescala</li>
+        <p>
+          Los movimientos a microescala son aquellos que ocurren en una escala espacial de menos de un kilómetro y en periodos temporales inferiores a una hora.
+        </p>
+        <li id="mesoescala" style="font-size: 18px;">Mesoescala</li>
+        <p>
+          Los movimientos en esta escala se producen en áreas un poco más grandes, tienen una influencia en un espacio de 1 a 1000 kilómetros y ocurren en periodos que van de una hora a varios días.
+        </p>
+        <li id="macroescala" style="font-size: 18px;">Macroescala</li>
+        <p>
+          Abarcan la escala global, es una escala espacial de más de 1000 kilómetros, van desde meses a años, incluso puede haber algunas semanas sin presentar cambios.
+        </p>
       </ul>
     </section>
 
@@ -157,14 +206,14 @@
 
     <!-- Sección 3 -->
     <section id="seccion3">
-      <h2>META3.2 DT </h2>
+      <h2>META3.2 DT</h2>
       <p>Este es un párrafo de conclusión donde puedes resumir los puntos principales.</p>
+      <h4 id="Variables">Variables</h4>
       <ul>
         <li>Conclusión final sobre el tema</li>
+        <li>Otra variable importante a considerar</li>
       </ul>
     </section>
+    
   </div>
 </body>
-</html>
-
-  

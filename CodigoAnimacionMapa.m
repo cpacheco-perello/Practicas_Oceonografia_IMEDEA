@@ -54,7 +54,7 @@ countries = readgeotable("C:\Users\pache\Documents\AAB--Practicas\IMEDEA\CODIGO 
     "\\ne_10m_admin_0_countries\ne_10m_admin_0_countries.shp");
 
 %% Create a video and gif object for saving the animation
-vidObj = VideoWriter('animacion_mapas_con_fade', 'Motion JPEG AVI');
+vidObj = VideoWriter('animacion_mapas_con_fade', 'MPEG-4');
 vidObj.Quality = 100;
 vidObj.FrameRate = 60; % Adjust frame rate as needed
 open(vidObj);
