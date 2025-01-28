@@ -1,7 +1,7 @@
 
 <head>
 
-  <title>Mi Página con Índice de Secciones</title>
+  <title> Documentación | CPP-Practicas IMEDEA </title>
   <style>
     /* Estilo base de la página */
     body {
@@ -41,7 +41,7 @@
 
     .index li {
       margin: 5px 0;
-      padding: 0px 0px 0px 5px ;
+      padding: 0px 0px 0px 8px ;
     }
 
     .index a {
@@ -56,12 +56,36 @@
     /* Estilo de las secciones */
     section {
       margin-bottom: 40px;
-      padding: 0px 0px 0px 50px ;
+      padding: 0px 20%  0px 20% ;
     }
 
     section h2 {
       color: #333;
+      margin: 0px -5%;
+      font-size: 30px;
     }
+
+    ul{
+        font-weight: bold;
+    }
+
+    
+    
+    /* Centrar el contenedor que contiene el iframe */
+    .video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0px 15px 0px;
+ /* Hace que el contenedor ocupe el 100% de la altura de la ventana */
+    }
+
+    iframe {
+    width: 80%; /* Ajusta el ancho del video al 80% del contenedor */
+    max-width: 800px; /* Máximo de 800px de ancho */
+    height: 500px; /* Ajusta la altura del video */
+    }
+    
   </style>
 </head>
 <body>
@@ -70,25 +94,60 @@
     <div class="index">
       <h3>Índice</h3>
       <ul>
-        <li><a href="#seccion1">Introducción</a></li>
-        <li><a href="#seccion2">Detalles</a></li>
-        <li><a href="#seccion3">Conclusión</a></li>
+        <li><a href="#seccion1">Eddies</a></li>
+        <li><a href="#seccion2">Métodos</a></li>
+        <li><a href="#seccion3">META3.2 DT </a></li>
       </ul>
     </div>
 
     <!-- Sección 1 -->
     <section id="seccion1">
-      <h2>Introducción</h2>
-      <p>Este es un párrafo largo con más detalles. Puedes agregar más párrafos aquí.</p>
+      <h2>Eddies</h2>
+      <p>
+        El océano está en constante movimiento, y dentro de él se forman patrones que se 
+        conocen como corrientes. En ocasiones, debido a la presencia de estructuras submarinas o costeras 
+        y la convergencia de corrientes opuestas, se generan movimientos circulares. Estos fenómenos 
+        se denominan "eddies" o remolinos.
+    </p>
+
+    <!-- <img style="height: auto; width: 50%; padding: 0px 0px 0px 20px;" src="eddy.jpg" alt="Imagen de Eddy"> -->
+    <!-- Contenedor para centrar el video -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/CCmTY0PKGDs?start=0&autoplay=1" frameborder="0" allow="accelerometer; autoplay; 
+        encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        
+        
+        
+        <p  style="height: auto; width: 20%; padding: 0px 0px 0px 50px;">
+        
+            Estos patrones  se forman por todo el océano y en diferentes escalas, desde pequeños 
+            remolinos de apenas unos metros de diámetro hasta enormes estructuras que pueden abarcar cientos 
+            de kilómetros. Los remolinos desempeñan un papel importante en la dinámica oceánica, ya que contribuyen 
+            a la mezcla de nutrientes, calor y salinidad en el agua. Además, tienen un impacto significativo en los 
+            ecosistemas marinos, influyendo en la distribución de organismos como el plancton, peces y otras especies.
+        </p>
+    
+    </div>
+
+    <p>
+        La formación y la duración de los remolinos pueden variar dependiendo de factores como la temperatura del agua, 
+        las corrientes principales y la topografía submarina. Algunos remolinos pueden persistir durante días, mientras 
+        que otros pueden durar meses, moviéndose a través del océano mientras transportan materiales y energía.
+    </p>
+    <p>    
+        A partir de
+        su duración espacio-temporal se puede clasificar en diferentes categorias.
+    </p>
       <ul>
-        <li>Primer punto de la lista</li>
-        <li>Segundo punto de la lista</li>
+        <li style="font-size: 18px;">Microescala</li>
+        <li style="font-size: 18px;">Mesoescala</li>
+        <li style="font-size: 18px;">Macroescala</li>
       </ul>
     </section>
 
     <!-- Sección 2 -->
     <section id="seccion2">
-      <h2>Detalles</h2>
+      <h2>Métodos de Identificación</h2>
       <p>Aquí puedes escribir más sobre el tema. Este es otro párrafo que forma parte de esta sección.</p>
       <ul>
         <li>Otro punto importante de la lista</li>
@@ -98,7 +157,7 @@
 
     <!-- Sección 3 -->
     <section id="seccion3">
-      <h2>Conclusión</h2>
+      <h2>META3.2 DT </h2>
       <p>Este es un párrafo de conclusión donde puedes resumir los puntos principales.</p>
       <ul>
         <li>Conclusión final sobre el tema</li>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Página GitHub Pages con Pestañas</title>
+  <link rel="icon" type="image/png" href="C.png"> 
   <style>
     /* Estilo base de la página */
     body {
@@ -29,7 +29,7 @@
       align-items: center;
       background-color: rgb(148, 217, 44); /* Alinea los elementos verticalmente */
       width: 100%;
-      padding: 0px 10px 0px 50px;
+      padding: 5px 10px 5px 50px;
     }
 
     /* Encabezado */
@@ -51,19 +51,21 @@
     /* Pestañas */
     .tab {
       color: black;
-      padding: 10px 20px;
+      padding: 10px 15px;
       font-size: 16px;
       text-align: center;
     }
 
     .tab:hover {
-      background-color: rgb(115, 208, 225);
+      background-color: rgb(23, 26, 200);
+      color: white;
       border-radius: 5%;
     }
 
     /* Pestaña activa */
     .tab.active {
       background-color: white;
+      color: rgb(39, 221, 194);
       font-weight: bold;
       border-radius: 5%;
     }
@@ -88,9 +90,8 @@
     /* Estilo de las imágenes */
     img {
       max-width: 100%;
-      height: auto;
       display: block;
-      margin: 20px 0;
+      
     }
 
     /* Logo */
@@ -104,12 +105,14 @@
     /* TEXTOS */
 
     p {
+      text-align: justify;
       line-height: 1.6;
-      text-align: left;
       margin-bottom: 20px;
-      padding: 0px 0px 0px 50px;
-      
     }
+
+
+
+
 
   </style>
 </head>
@@ -120,11 +123,11 @@
 
       <img src="logo-c-4-2000x1174.png" alt="Logo" class="logo">
 
-      <h1>Practicas Oceanografía IMEDEA, Carlos Pacheco Perelló</h1>
+      <h1>Practicas Oceanografía, Carlos Pacheco Perelló</h1>
 
       <!-- Pestañas de navegación -->
       <div class="tabs">
-        <div class="tab" onclick="loadTab('pestana1')">Mapa</div>
+        <div class="tab" onclick="loadTab('pestana1')">Mapas</div>
         <div class="tab" onclick="loadTab('pestana2')">Estadísticas</div>
         <div class="tab" onclick="loadTab('pestana3')">Documentación</div>
       </div>
