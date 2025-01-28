@@ -81,7 +81,7 @@ end
 for dia = time(1):time(2)
 
      %% Mundo i condiciones de figura
-    set(gcf, 'Position', [100, 100, 1920, 1080]);
+    set(gcf, 'Position', [100, 100, 1920, 1080],'Color', 'none');
     worldmap([lat_min_bound lat_max_bound], [long_min_bound long_max_bound]);
     setm(gca, 'Frame', 'on', 'Grid', 'on', 'ParallelLabel', 'on', 'MeridianLabel', 'on');
 
