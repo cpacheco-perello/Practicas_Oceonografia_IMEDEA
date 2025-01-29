@@ -10,10 +10,12 @@ colorAnc= [0,0, 1];  % Color for points anticiclonic
 
 %%Define the time range for animation
 start_date = datetime(1950, 1, 1);   % INICIO DE LA CUENTA DE DIAS DE LOS DATOS
-dates = datetime(1993, 1, 1);           % Fecha inicio a representar (1993 primer año)
-days_since_start = days(dates - start_date); % Fecha inicio a representar en dias desde start_date
+dates = datetime(2000, 9, 1);    % Fecha inicio a representar (1993 primer año)
+dates_END = datetime(2000, 9, 30);  
+days_since_start = days(dates - start_date);% Fecha inicio a representar en dias desde start_date
+days_since_start_END = days(dates_END - start_date); 
 % Intervalo representación
-time = [days_since_start, days_since_start + 7]; 
+time = [days_since_start, days_since_start_END]; 
 
 %%Variable para rellenar los eddys
 fieldName = 'lifetime';
@@ -63,6 +65,7 @@ open(vidObj);
 vid_filename = 'animacion_mapas.avi'; % Nombre del archivo de video
 gif_filename = 'animacion_mapas.gif'; % Nombre del archivo GIF
 
+
 %% Variable min and max for area fill of eddys
 idxC = find(Data_CIC.time >= time(1) & Data_CIC.time <= time(2)); % Para Data_CIC
 idxA = find(Data_ANC.time >= time(1) & Data_ANC.time <= time(2)); % Para Data_ANC
@@ -77,17 +80,19 @@ end
 
 
 %%  Loop over the time range
-
+figure('Position', [100, 100, 1920, 1080], 'Color', 'white');
 for dia = time(1):time(2)
 
      %% Mundo i condiciones de figura
-    set(gcf, 'Position', [100, 100, 1920, 1080],'Color', 'white');
-    worldmap([lat_min_bound lat_max_bound], [long_min_bound long_max_bound]);
-    setm(gca, 'Frame', 'on', 'Grid', 'on', 'ParallelLabel', 'on', 'MeridianLabel', 'on');
+     
+     % Configuración del mapa
+
+    ax = worldmap([lat_min_bound lat_max_bound], [long_min_bound long_max_bound]);
+    setm(ax, 'Frame', 'on', 'Grid', 'on', 'ParallelLabel', 'on', 'MeridianLabel', 'on');
 
     % Show country borders
-    geoshow(countries, 'FaceColor', [0.3 0.4 0.3], 'EdgeColor', [0.5 0.5 0.5], 'LineWidth', 1);
-    
+    geoshow(countries, 'FaceColor', [0.3 0.4 0.3], 'EdgeColor', [0.5 0.5 0.5], 'LineWidth', 1,'Parent', ax);
+ 
     %% Loop for both CIC and ANC
     for Turno = [1, 2]
         if Turno == 1
@@ -134,7 +139,7 @@ for dia = time(1):time(2)
         end
 
         % Plot individual contours for both CIC and ANC
-        parfor i = 1:size(dayANC.effective_contour_latitude, 2)
+        for i = 1:size(dayANC.effective_contour_latitude, 2)
             latA = dayANC.effective_contour_latitude(:, i);
             lonA = dayANC.effective_contour_longitude(:, i);
           
@@ -156,7 +161,7 @@ for dia = time(1):time(2)
         end
 
 
-        parfor i = 1:size(dayCIC.effective_contour_latitude, 2)
+        for i = 1:size(dayCIC.effective_contour_latitude, 2)
             latC = dayCIC.effective_contour_latitude(:, i);
             lonC = dayCIC.effective_contour_longitude(:, i);
             geoshow(latC, lonC, 'DisplayType', 'line', 'Color', [colorCic, alpha], 'LineWidth', tam_line);
