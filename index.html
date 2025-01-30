@@ -26,6 +26,7 @@
     /* Contenedor para el encabezado y las pestañas */
     .header-tabs {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center; /* Asegura que el encabezado y las pestañas se distribuyan */
       align-items: center;
       background-color: rgb(148, 217, 44); /* Alinea los elementos verticalmente */
@@ -111,6 +112,40 @@
       line-height: 1.2;
       margin-bottom: 20px;
     }
+
+    @media screen and (max-width: 768px) {
+      .header-tabs {
+        flex-wrap: wrap; /* Permite que los elementos bajen de línea si es necesario */
+        text-align: center;
+        padding: 2%;
+      }
+    
+      h1 {
+        font-size: 120%; /* Reduce el tamaño del título en móviles */
+        text-align: center;
+        padding: 5px 0;
+      }
+    
+      .tabs {
+        flex-direction: column; /* Apila las pestañas en móviles */
+        width: 100%;
+      }
+    
+      .tab {
+        width: 100%; /* Hace que las pestañas ocupen todo el ancho */
+        padding: 5%; 
+        font-size: 110%;
+      }
+    
+      .logo {
+        width: 15%; /* Aumenta el tamaño del logo en móviles */
+      }
+    
+      p {
+        font-size: 120%; /* Reduce ligeramente el tamaño del texto en móviles */
+      }
+    }
+    
 
 
 

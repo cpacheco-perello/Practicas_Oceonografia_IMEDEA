@@ -1,8 +1,8 @@
 close all;
 clear all;
 folderPath = 'C:\Users\pache\Documents\AAB--Practicas\IMEDEA\CODIGO - DATOS\DATOS\twosat\Mediterraneo';
-filenameAnticiclonica = 'Data_twosat_Anticyclonic_long__Mediterraneo.mat';
-filenameCiclonica = 'Data_twosat_Cyclonic_long__Mediterraneo.mat';
+filenameAnticiclonica = 'Data_Anticiclonica_short_long_combinado.mat';
+filenameCiclonica = 'Data_Cicllonica_short_long_combinado.mat';
 
 mat_filenameANC = fullfile(folderPath, filenameAnticiclonica);
 mat_filenameCIC = fullfile(folderPath, filenameCiclonica);
@@ -44,7 +44,7 @@ for k = 1:length(datasets)
     % Agregar el contador como un nuevo campo 'lifetime'
     Data.lifetime = contador;
 
-·
+
 %% VIDA MAXIMA
 
 

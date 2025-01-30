@@ -29,8 +29,8 @@ numFrameVideo=4;
 % carpeta donde estan los archivos
 folderPath = 'C:\Users\pache\Documents\AAB--Practicas\IMEDEA\CODIGO - DATOS\DATOS\twosat\Mediterraneo';
 % nombre de los archivos de datos ciclonica y anticiclonica
-filenameAnticiclonica = 'Data_twosat_Anticyclonic_long__Mediterraneo.mat';
-filenameCiclonica = 'Data_twosat_Cyclonic_long__Mediterraneo.mat';
+filenameAnticiclonica = 'Data_Anticiclonica_short_long_combinado.mat';
+filenameCiclonica = 'Data_Cicllonica_short_long_combinado.mat';
 
 % archivos de datos ciclonica y anticiclonica
 mat_filenameANC = fullfile(folderPath, filenameAnticiclonica);
@@ -215,7 +215,7 @@ for dia = time(1):time(2)
 
     % colorbar ---
     colormap(cmap);
-    caxis([minLifetime ,maxLifetime]);  
+    clim([minLifetime ,maxLifetime]);  
     
     % Muestra la barra de colores
     cb = colorbar; 
