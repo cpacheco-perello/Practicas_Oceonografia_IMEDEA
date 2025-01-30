@@ -100,7 +100,7 @@
     section h2 {
       color: #333;
       margin: 0px -5%;
-      font-size: 150%;
+      font-size: 180%;
     }
 
     section h4 {
@@ -125,9 +125,67 @@
       max-width: 800px;
       height: 500px;
     }
+
+    @media screen and (max-width: 768px) {
+      .index {
+        position: fixed;
+        top: 0;
+        left: -60%;  /* Ocultar el índice inicialmente */
+        width: 60%;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 10px;
+        transition: left 0.3s ease-in-out;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+    
+      .index.active {
+        left: 0; /* Muestra el índice cuando está activo */
+      }
+    
+      .index ul {
+        padding: 0;
+      }
+    
+      /* Botón para abrir/cerrar índice */
+      .menu-toggle {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+        z-index: 1100;
+      }
+    
+      section {
+        padding: 10% 5%;
+      }
+    
+      iframe {
+        width: 100%;
+        height: 300px;
+      }
+    }
+    
   </style>
 </head>
+
+<script>
+  function toggleMenu() {
+    document.querySelector(".index").classList.toggle("active");
+  }
+</script>
+
+
 <body>
+  <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
+
   <div class="container">
     <!-- Índice de Secciones -->
     <div class="index">
