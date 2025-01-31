@@ -23,7 +23,7 @@
       position: fixed;
       top: 0;
       width: 0.1%;
-      font-size: 80%;
+      font-size: 90%;
       padding: 0px 0px 0px 3%;
       height: 100vh;
       background-color: #a09b9b4c;
@@ -77,7 +77,7 @@
 
     /* Estilo para los encabezados del submenú */
     .index .submenu h4 {
-      font-size: 70%;
+      font-size: 80%;
       margin: 5px 0;
       color: #333;
       font-weight: bold;
@@ -88,6 +88,7 @@
       margin: 5px 0;
       color: #007BFF;
       font-weight: normal;
+
     }
     
 
@@ -95,22 +96,25 @@
     section {
       margin-bottom: 40px;
       padding: 4% 15%;
+
     }
 
     section h2 {
       color: #333;
       margin: 0px -5%;
-      font-size: 180%;
+      font-size: 200%;
     }
 
     section h4 {
       color: #333;
       font-size: 130%;
     }
-
-    ul {
+    
+    section li{
+      font-size: 150%;
       font-weight: bold;
     }
+
 
     /* Centrar el contenedor que contiene el iframe */
     .video-container {
@@ -176,36 +180,53 @@
   </style>
 </head>
 
+
+
 <script>
-  function toggleMenu() {
-    document.querySelector(".index").classList.toggle("active");
-  }
+
+  function showSection(sectionid) {
+    // Ocultar todas las secciones
+    let sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        section.style.display = "none"; 
+    });
+
+    // Mostrar la sección específica
+    let seccion = document.getElementById(sectionid);
+    if (seccion) {
+        seccion.style.display = "block";
+    } else {
+        console.warn(`La sección con ID '${sectionid}' no existe.`);
+    }
+}
+
+
+  
 </script>
 
-
 <body>
-  <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
+  
 
   <div class="container">
     <!-- Índice de Secciones -->
     <div class="index">
-      <h3>Índice</h3>
+      <h3 onclick="(showSection())">Índice</h3>
       <ul>
         <li>
-          <a href="#seccion1">Eddies</a>
+          <a  id="linkEddies" >Eddies</a>
           <div class="submenu">
 
           </div>
         </li>
 
         <li>
-          <a href="#seccion2">Métodos</a>
+          <a href="#" onclick="showSection('seccion2')">Métodos</a>
           <div class="submenu">
 
           </div>
         </li>
         <li>
-          <a href="#seccion3">META3.2 DT</a>
+          <a href="#" onclick="showSection('seccion3', event)">META3.2 DT</a>
           <div class="submenu">
             <h4><a href="#Variables">Variables</a></h4>
           </div>
@@ -215,11 +236,11 @@
     
 
     <!-- Sección 1 ------------------------------------------->
-    <section id="seccion1">
+    <section id="seccion1" style="display: none;" >
       <h2>Eddies</h2>
       <p>
-        El océano está en constante movimiento, y dentro de él se forman patrones que se 
-        conocen como corrientes. En ocasiones, debido a la presencia de estructuras submarinas o costeras 
+        El océano está en un constante movimiento, y dentro de él se forman patrones que se 
+        conocen como corrientes. En ocasiones, debido a la presencia de estructuras submarinas, costeras 
         y la convergencia de corrientes opuestas, se generan movimientos circulares. Estos fenómenos 
         se denominan "eddies" o remolinos.
       </p>
@@ -247,18 +268,18 @@
 
 
       <ul>
-        <li  style="font-size: 18px;">Microescala</li>
+        <li>Microescala</li>
         <p>
           Los movimientos a microescala son aquellos que ocurren en una escala espacial de menos de un kilómetro y en periodos temporales inferiores a una hora.
         </p>
-        <li id="mesoescala" style="font-size: 18px;">Mesoescala</li>
+        <li>Mesoescala</li>
         <p>
           Los movimientos en esta escala se producen en áreas un poco más
           grandes, tienen una influencia en un espacio de 1 a 1000 kilómetros y ocurren en
           periodos que van de una hora a varios días. Eventos pertenecientes a esta escala
           de movimiento son brisas de mar-tierra, tormentas, tornados
         </p>
-        <li id="macroescala" style="font-size: 18px;">Macroescala</li>
+        <li >Macroescala</li>
         <p>
           Abarcan la escala global, es una escala espacial de más de 1000
           kilómetros, van desde meses a años, incluso puede haber algunas semanas sin
@@ -269,7 +290,7 @@
     </section>
 
     <!-- Sección 2 ------------------------------------------->
-    <section id="seccion2">
+    <section id="seccion2" style="display: none;">
       <h2>Métodos de Identificación</h2>
       <p>Aquí puedes escribir más sobre el tema. Este es otro párrafo que forma parte de esta sección.</p>
       <ul>
@@ -279,7 +300,7 @@
     </section>
 
     <!-- Sección 3 ------------------------------------------->
-    <section id="seccion3">
+    <section id="seccion3" style="display: none;">
       <h2>META3.2 DT</h2>
       <p>Este es un párrafo de conclusión donde puedes resumir los puntos principales.</p>
       <h4 id="Variables">Variables</h4>
