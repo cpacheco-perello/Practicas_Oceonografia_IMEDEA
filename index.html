@@ -7,9 +7,9 @@
   <style>
     /* Estilo base de la página */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Lato', sans-serif;
       margin: 0;
-      padding: 0;
+      padding: 0px;
       background-color: #f4f4f4;
       color: #333;
     }
@@ -22,6 +22,85 @@
       /* Centra todos los elementos dentro del contenedor */
       width: 100%;
     }
+
+    /* Índice de secciones */
+    .index {
+      position: fixed;
+      top: 0;
+      width: 0.1%;
+      padding: 0px 0px 0px 3%;
+      height: 100vh;
+      background-color: #a09b9b4c;
+      border-right: 1px solid #ddd;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+    }
+
+    .index:hover{
+      width: 10%;
+      background-color: #ffffffb0;
+    }
+
+    
+    
+    .index ul {
+      display: flex;
+      flex-direction: column;
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    .index li {
+      margin: 10px 0;
+      padding-left: 8px;
+    }
+    
+    .index a {
+      text-decoration: none;
+      color: #007BFF;
+    }
+    
+    .index a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Submenú para subsecciones */
+    .index .submenu {
+      display: none;
+      list-style-type: none;
+      padding-left: 0%;
+      margin: 0;
+    }
+
+    /* Mostrar submenú con encabezados */
+    .index li:hover .submenu {
+      display: block;
+      position: relative;
+      background-color: #17f44300;
+      padding: 2%;
+      border-left: 8% solid #57bd1b;
+    }
+
+    /* Estilo para los encabezados del submenú */
+    .index .submenu h4 {
+      font-size: 80%;
+      margin: 5px 0;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .index .submenu h5 {
+      font-size: 1em;
+      margin: 5px 0;
+      color: #007BFF;
+      font-weight: normal;
+
+    }
+    .index-btn {
+
+      display: none;
+    }
+    
 
     /* Contenedor para el encabezado y las pestañas */
     .header-tabs {
@@ -104,6 +183,51 @@
     }
 
 
+    /* Estilo de las secciones ------------------------------------------------------*/
+    section {
+      margin-bottom: 40px;
+      padding: 4% 15%;
+
+    }
+
+    section h2 {
+      color: #333;
+      margin: 0px -5%;
+      font-size: 210%;
+    }
+
+    section h4 {
+      color: #333;
+      margin: 0px -3%;
+      font-size: 170%;
+      padding: 3% 0% 0% 0%;
+    }
+    
+    section li{
+      font-size: 150%;
+      font-weight: bold;
+      padding: 2% 0% 0% 0% ;
+    }
+
+
+    /* Centrar el contenedor que contiene el iframe */
+    .video-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    iframe {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2% 0%;
+      width: 80%;
+      max-width: 800px;
+      height: 500px;
+    }
+
+   
     /* TEXTOS */
 
     p {
@@ -113,48 +237,274 @@
       margin-bottom: 20px;
     }
 
-    @media screen and (max-width: 768px) {
-      .header-tabs {
-        flex-wrap: wrap; /* Permite que los elementos bajen de línea si es necesario */
-        text-align: center;
-        padding: 2%;
-      }
-    
-      h1 {
-        font-size: 120%; /* Reduce el tamaño del título en móviles */
-        text-align: center;
-        padding: 5px 0;
-      }
-    
-      .tabs {
-        flex-direction: column; /* Apila las pestañas en móviles */
-        width: 100%;
-      }
-    
-      .tab {
-        width: 90%; /* Hace que las pestañas ocupen todo el ancho */
-        padding: 5%; 
-        font-size: 110%;
-      }
-    
-      .logo {
-        width: 15%; /* Aumenta el tamaño del logo en móviles */
-      }
-    
-      p {
-        font-size: 100%; /* Reduce ligeramente el tamaño del texto en móviles */
-      }
+    /* Estilos para móviles */
+  @media screen and (max-width: 769px) {
+    body {
+      font-size: 14px;
+    }
+
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .index {
+      position: fixed;  
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      top: 0px;
+      width: 100%;
+      padding:  10% 0px 10% 40%;
+      height: 100vh;
+      background-color: #a09b9bcc;
+      border-right: 1px solid #ddd;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+      display: none;
     }
     
 
+    /* El índice ocupa parte de la pantalla debajo del botón */
 
+    /* Ajustar el botón */
+    .index-btn {
+      position:fixed;
+      bottom:0;   
+      height: 5svh; 
 
+      width: 100%;
+      font-size: 100%;
+      display: block;
+    }
+
+    /* Contenedor de las pestañas */
+
+  
+
+    .header-tabs {
+      flex-direction: column;
+      padding: 2%;
+    }
+
+    h1 {
+      font-size: 120%;
+      text-align: center;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      
+    }
+
+    .tab {
+      font-size: 90%;
+      padding: 2% 3%;
+    }
+
+    section {
+      padding: 5%;
+    }
+
+    section h2 {
+      font-size: 180%;
+      text-align: center;
+    }
+
+    section h4 {
+      font-size: 150%;
+      text-align: center;
+    }
+
+    section li {
+      font-size: 120%;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 300px;
+    }
+
+    p {
+      font-size: 110%;
+    }
+
+    .logo {
+      width: 12%;
+    }
+  }
+
+  /* Para pantallas de tablet */
+   /* Para dispositivos de tablet (pantallas entre 769px y 1024px) */
+   @media screen and (min-width: 769px) and (max-width: 1024px) {
+    /* Mostrar el índice cuando se activa */
+    body {
+      font-size: 14px;
+    }
+
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .index {
+      position: fixed;  
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      top: 0px;
+      width: 100%;
+      padding:  10% 0px 10% 40%;
+      height: 100vh;
+      background-color: #a09b9bcc;
+      border-right: 1px solid #ddd;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+      display: none;
+    }
+    
+
+    /* El índice ocupa parte de la pantalla debajo del botón */
+
+    /* Ajustar el botón */
+    .index-btn {
+      position: fixed; 
+      bottom: 0;
+      height: 50px;/* Altura fija del botón */
+      width: 100%;
+      font-size: 100%;
+      display: block;
+      background-color: #007BFF; /* Color de fondo */
+      color: white; /* Color de texto */
+      border: none; /* Sin borde */
+      text-align: center; /* Centrar el texto */
+      line-height: 6vh; /* Alinear verticalmente el texto */
+      z-index: 1000; /* Asegura que esté siempre por encima del contenido */
+    }
+
+    /* Contenedor de las pestañas */
+
+  
+
+    .header-tabs {
+      flex-direction: column;
+      padding: 2%;
+    }
+
+    h1 {
+      font-size: 120%;
+      text-align: center;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      
+    }
+
+    .tab {
+      font-size: 90%;
+      padding: 2% 3%;
+    }
+
+    section {
+      padding: 5%;
+    }
+
+    section h2 {
+      font-size: 180%;
+      text-align: center;
+    }
+
+    section h4 {
+      font-size: 150%;
+      text-align: center;
+    }
+
+    section li {
+      font-size: 120%;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 300px;
+    }
+
+    p {
+      font-size: 110%;
+    }
+
+    .logo {
+      width: 10%;
+    }
+  
+  }
+
+  
+
+  
+
+    
 
 
   </style>
 </head>
+
+<script>
+
+  function showSection(sectionid, event) {
+    if (event) event.preventDefault();
+
+    // Ocultar todas las secciones
+    let sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        section.style.display = "none";
+        
+    });
+
+    // Mostrar la sección específica
+    let seccion = document.getElementById(sectionid);
+    if (seccion) {
+        seccion.style.display = "block";
+    }
+
+    if (window.innerWidth <= 1300) {
+      toggleIndex(); // Llamamos a la función toggleIndex para ocultar el índice
+    }
+    
+
+  }
+  window.showSection = showSection;
+
+  function toggleIndex() {
+    const index = document.querySelector(".index");
+  
+    // Verificar si el índice está oculto o visible
+    if (index.style.display === "none" || index.style.display === "") {
+      // Activar el índice (mostrarlo)
+      index.style.display = "block";
+    } else {
+      // Desactivar el índice (ocultarlo)
+      index.style.display = "none";
+    }
+  }
+  
+
+  
+  
+
+
+  
+</script>
 <body>
+          <!-- Botón para abrir/cerrar el índice -->
+
+
   <div class="container">
+    <button class="index-btn" onclick="toggleIndex()">☰</button>
+        <!-- Botón para abrir/cerrar el índice -->
     <!-- Contenedor para el encabezado y las pestañas -->
     <div class="header-tabs">
 
@@ -166,9 +516,11 @@
       <div class="tabs">
         <div class="tab" onclick="loadTab('pestana1')">Mapas</div>
         <div class="tab" onclick="loadTab('pestana2')">Estadísticas</div>
-        <div class="tab" onclick="loadTab('pestana3')">Documentación</div>
+        <div class="tab" onclick="loadTab('pestana3')">Teoría</div>
       </div>
     </div>
+
+
 
     <!-- Contenedor para el contenido cargado -->
     <div id="content-container">
@@ -180,35 +532,45 @@
     // Función para cargar el contenido de las pestañas desde archivos externos
     function loadTab(tabName) {
       const container = document.getElementById('content-container');
-
+    
       // Limpiar el contenido actual
       container.innerHTML = '';
-
+    
       // Cargar el archivo HTML correspondiente
       fetch(`${tabName}.html`)
         .then(response => response.text())
         .then(data => {
-          // Insertar el contenido en el contenedor
           container.innerHTML = data;
+    
+          // Ejecutar los scripts del contenido cargado
+          const scripts = container.querySelectorAll("script");
+          scripts.forEach(script => {
+            const newScript = document.createElement("script");
+            if (script.src) {
+              newScript.src = script.src;
+              newScript.onload = () => console.log(`Script ${script.src} cargado.`);
+            } else {
+              newScript.textContent = script.textContent;
+            }
+            document.body.appendChild(newScript);
+          });
         })
         .catch(error => {
           console.error('Error al cargar el contenido:', error);
           container.innerHTML = '<p>Error al cargar el contenido.</p>';
         });
-
+    
       // Cambiar el estado activo de las pestañas
       const tabs = document.querySelectorAll('.tab');
-      tabs.forEach(tab => {
-        tab.classList.remove('active'); // Eliminar la clase 'active' de todas las pestañas
-      });
-
+      tabs.forEach(tab => tab.classList.remove('active'));
+    
       // Identificar la pestaña activa y agregarle la clase 'active'
       const activeTab = Array.from(tabs).find(tab => tab.getAttribute('onclick') === `loadTab('${tabName}')`);
       if (activeTab) {
-        activeTab.classList.add('active'); // Agregar la clase 'active' a la pestaña correspondiente
+        activeTab.classList.add('active');
       }
     }
-
+    
     // Cargar por defecto el contenido de la primera pestaña
     loadTab('pestana1');
   </script>

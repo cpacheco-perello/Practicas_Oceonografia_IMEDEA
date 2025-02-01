@@ -1,31 +1,72 @@
-<title> Mapas | CPP-Practicas IMEDEA </title>
-<img src="https://raw.githubusercontent.com/cpacheco-perello/Practicas_Oceonografia_IMEDEA/master/animacion_mapas.gif" alt="Animación de mapas">
-<!-- 
-<video id="videoPlayer" width="800" controls>
-    <source src="animacion_mapas_con_fade.mp4" type="video/mp4">
-    Tu navegador no soporta este formato de video.
-</video>
- Selector de velocidad 
-<div style="margin-top: 10px;">
-  <label for="speedControl">Velocidad:</label>
-  <select id="speedControl">
-    <option value="0.155">0.0005x (Lento)</option>
-    <option value="0.25">0.25x (Lento)</option>
-    <option value="0.5">0.5x (Lento)</option>
-    <option value="1" selected>1x (Normal)</option>
-    <option value="1.5">1.5x</option>
-    <option value="2">2x (Rápido)</option>
-  </select>
-</div>
+<head></head>
+  <title> Mapas | CPP-Practicas IMEDEA </title>
+</head>
+<body>
 
-<script>
-  // Referencia al video y al selector
-  const video = document.getElementById('videoPlayer');
-  const speedControl = document.getElementById('speedControl');
+  <div class="container">
 
-  // Cambiar la velocidad de reproducción cuando el usuario selecciona una opción
-  speedControl.addEventListener('change', function () {
-    video.playbackRate = parseFloat(this.value);
-  });
-</script>
--->
+
+     <!-- Índice de Secciones -->
+     <div class="index">
+      <h3 >Índice</h3>
+      <ul>
+        <li>
+          <a href="javascript:void(0);"onclick="showSection('MapasEvolución',event)" >Mapas Evolución</a>
+          <div class="submenu">
+
+          </div>
+        </li>
+
+        <li>
+          <a href="javascript:void(0);"onclick="showSection('MapasDensidadZon',event)" >Mapas Densidad Zonas</a>
+          <div class="submenu">
+
+          </div>
+        </li>
+
+        <li>
+          <a href="javascript:void(0);"onclick="showSection('MapasDensidadCeld',event)" >Mapas Densidad Celdas</a>
+          <div class="submenu">
+
+          </div>
+        </li>
+
+
+
+
+        
+      </ul>
+    </div>
+
+    <section id="MapasEvolución" style="display: block;" >
+      <h2>Mapas Evolución</h2>
+      <p>Este es un párrafo de conclusión donde puedes resumir los puntos principales.</p>
+      <h4 id="SLA">Representación eddies con data SLA y productos</h4>
+
+      <img src="https://raw.githubusercontent.com/cpacheco-perello/Practicas_Oceonografia_IMEDEA/master/animacion_mapas.gif" alt="Animación de mapas">
+
+
+      <h4 id="SLA">Representación eddies con contour de Lifetime</h4>
+    </section>
+
+
+    <section id="MapasDensidadCeld" style="display: none;" >
+      <h2>Mapas Densidad por celdas</h2>
+      <p>Este es un párrafo de conclusión donde puedes resumir los puntos principales.</p>
+      <h4 id="SLA">Representación eddies con data SLA y productos</h4>
+
+      
+    </section>
+
+    <section id="MapasDensidadZon" style="display: none;" >
+      <h2>Mapas Densidad por Zonas</h2>
+      <p>Este es un párrafo de conclusión donde puedes resumir los puntos principales.</p>
+      <h4 id="SLA">Representación eddies con data SLA y productos</h4>
+
+      
+    </section>
+
+  
+  </div>
+</body>
+

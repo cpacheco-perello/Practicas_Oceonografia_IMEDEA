@@ -1,234 +1,37 @@
 <head>
   <title> Documentación | CPP-Practicas IMEDEA </title>
-  <style>
-    /* Estilo base de la página */
-    body {
-      font-family: 'Lato', sans-serif;
-      margin: 0;
-      padding: 0px;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-
-    /* Contenedor principal */
-    .container {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      
-    }
-
-    /* Índice de secciones */
-    .index {
-      position: fixed;
-      top: 0;
-      width: 0.1%;
-      font-size: 90%;
-      padding: 0px 0px 0px 3%;
-      height: 100vh;
-      background-color: #a09b9b4c;
-      border-right: 1px solid #ddd;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-      overflow-y: auto;
-    }
-
-    .index:hover{
-      width: 10%;
-      background-color: #ffffffb0;
-    }
-    
-    .index ul {
-      display: flex;
-      flex-direction: column;
-      list-style-type: none;
-      padding: 0;
-    }
-    
-    .index li {
-      margin: 10px 0;
-      padding-left: 8px;
-    }
-    
-    .index a {
-      text-decoration: none;
-      color: #007BFF;
-    }
-    
-    .index a:hover {
-      text-decoration: underline;
-    }
-    
-    /* Submenú para subsecciones */
-    .index .submenu {
-      display: none;
-      list-style-type: none;
-      padding-left: 0%;
-      margin: 0;
-    }
-
-    /* Mostrar submenú con encabezados */
-    .index li:hover .submenu {
-      display: block;
-      position: relative;
-      background-color: #f4f4f4;
-      padding: 5px;
-      border-left: 2px solid #007BFF;
-    }
-
-    /* Estilo para los encabezados del submenú */
-    .index .submenu h4 {
-      font-size: 80%;
-      margin: 5px 0;
-      color: #333;
-      font-weight: bold;
-    }
-
-    .index .submenu h5 {
-      font-size: 1em;
-      margin: 5px 0;
-      color: #007BFF;
-      font-weight: normal;
-
-    }
-    
-
-    /* Estilo de las secciones */
-    section {
-      margin-bottom: 40px;
-      padding: 4% 15%;
-
-    }
-
-    section h2 {
-      color: #333;
-      margin: 0px -5%;
-      font-size: 200%;
-    }
-
-    section h4 {
-      color: #333;
-      font-size: 130%;
-    }
-    
-    section li{
-      font-size: 150%;
-      font-weight: bold;
-    }
-
-
-    /* Centrar el contenedor que contiene el iframe */
-    .video-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    iframe {
-      padding: 2% 0%;
-      width: 80%;
-      max-width: 800px;
-      height: 500px;
-    }
-
-    @media screen and (max-width: 768px) {
-      .index {
-        position: fixed;
-        top: 0;
-        left: -60%;  /* Ocultar el índice inicialmente */
-        width: 60%;
-        height: 100vh;
-        background-color: rgba(255, 255, 255, 0.95);
-        padding: 10px;
-        transition: left 0.3s ease-in-out;
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-      }
-    
-      .index.active {
-        left: 0; /* Muestra el índice cuando está activo */
-      }
-    
-      .index ul {
-        padding: 0;
-      }
-    
-      /* Botón para abrir/cerrar índice */
-      .menu-toggle {
-        position: fixed;
-        top: 10px;
-        left: 10px;
-        background-color: #007BFF;
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        font-size: 16px;
-        border-radius: 5px;
-        z-index: 1100;
-      }
-    
-      section {
-        padding: 10% 5%;
-      }
-    
-      iframe {
-        width: 100%;
-        height: 300px;
-      }
-    }
-    
-  </style>
+  
 </head>
 
 
 
-<script>
-
-  function showSection(sectionid) {
-    // Ocultar todas las secciones
-    let sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        section.style.display = "none"; 
-    });
-
-    // Mostrar la sección específica
-    let seccion = document.getElementById(sectionid);
-    if (seccion) {
-        seccion.style.display = "block";
-    } else {
-        console.warn(`La sección con ID '${sectionid}' no existe.`);
-    }
-}
-
-
-  
-</script>
 
 <body>
-  
 
   <div class="container">
+
     <!-- Índice de Secciones -->
     <div class="index">
-      <h3 onclick="(showSection())">Índice</h3>
+      
+      <h3 >Índice</h3>
       <ul>
         <li>
-          <a  id="linkEddies" >Eddies</a>
+          <a href="javascript:void(0);"onclick="showSection('Eddies',event)" >Eddies</a>
           <div class="submenu">
 
           </div>
         </li>
 
         <li>
-          <a href="#" onclick="showSection('seccion2')">Métodos</a>
+          <a href="javascript:void(0);" onclick="showSection('Metodos',event)">Métodos</a>
           <div class="submenu">
 
           </div>
         </li>
         <li>
-          <a href="#" onclick="showSection('seccion3', event)">META3.2 DT</a>
+          <a href="javascript:void(0);" onclick="showSection('Meta3', event)">META3.2 DT</a>
           <div class="submenu">
-            <h4><a href="#Variables">Variables</a></h4>
+            <h4><a href="#Variables" onclick="showSection('Meta3', event)">Variables</a></h4>
           </div>
         </li>
       </ul>
@@ -236,7 +39,7 @@
     
 
     <!-- Sección 1 ------------------------------------------->
-    <section id="seccion1" style="display: none;" >
+    <section id="Eddies" style="display: block;">
       <h2>Eddies</h2>
       <p>
         El océano está en un constante movimiento, y dentro de él se forman patrones que se 
@@ -246,7 +49,7 @@
       </p>
 
       <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/CCmTY0PKGDs?start=0&autoplay=1" frameborder="0" allow="accelerometer; autoplay; 
+        <iframe src="https://www.youtube.com/embed/CCmTY0PKGDs?start=0&autoplay=1&loop=1&playlist=CCmTY0PKGDs"  frameborder="0" allow="accelerometer; autoplay; 
         encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
 
@@ -289,8 +92,11 @@
       </ul>
     </section>
 
+
+
+
     <!-- Sección 2 ------------------------------------------->
-    <section id="seccion2" style="display: none;">
+    <section id="Metodos" style="display: none;">
       <h2>Métodos de Identificación</h2>
       <p>Aquí puedes escribir más sobre el tema. Este es otro párrafo que forma parte de esta sección.</p>
       <ul>
@@ -299,8 +105,10 @@
       </ul>
     </section>
 
+
+
     <!-- Sección 3 ------------------------------------------->
-    <section id="seccion3" style="display: none;">
+    <section id="Meta3" style="display: none;" >
       <h2>META3.2 DT</h2>
       <p>Este es un párrafo de conclusión donde puedes resumir los puntos principales.</p>
       <h4 id="Variables">Variables</h4>
