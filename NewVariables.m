@@ -47,6 +47,7 @@ for k = 1:length(datasets)
 %}
 
 %% CELDA DE NACIMIENTO
+%{
 track = unique(Data.track);
 
 % Iterar sobre cada valor único en 'track'
@@ -81,21 +82,68 @@ for j = 1:length(track)
         cell_polygon = geopolyshape(lat_points, lon_points);
     
         % Verificar si el punto está dentro del polígono de la celda
-        u
+        
         if isinterior(cell_polygon, point)
             Data.celda(idx, 1)=u;
             break
         end 
+
     end
+ end
+%}
 
     
+%% CELDA DE NACIMIENTO PARA LOS QUE NO SE LES HA ASIGNADO
+%{
+idx = find(Data.celda == 0); % Encuentra índices donde Data.celda es 0
+
+for j = idx
+    latitud_origen = Data.latitude(j);
+    longitud_origen = Data.longitude(j);
+    point = geopointshape(latitud_origen, longitud_origen);
+    
+    cell_size = 1; 
+    min_distance = inf; % Inicializa la distancia mínima con infinito
+    closest_cell = -1; % Variable para almacenar la celda más cercana
+
+    for u = 1:length(cells)
+        lon = cells(u).Longitude;
+        lat = cells(u).Latitude;
+
+        % Crear los vértices del cuadrado (polígono de la celda)
+        lon_points = [lon, lon + cell_size, lon + cell_size, lon];  
+        lat_points = [lat, lat, lat + cell_size, lat + cell_size];
+
+        % Crear el polígono de la celda
+        cell_polygon = geopolyshape(lat_points, lon_points);
+    
+        % Calcular distancia entre el punto y el centro de la celda
+        dist = distance(latitud_origen, longitud_origen, lat, lon); 
+        
+        % Si es la celda más cercana encontrada hasta ahora, la guardamos
+        if dist < min_distance
+            min_distance = dist;
+            closest_cell = u;
+        end
+    end
+
+    % Asigna la celda más cercana a Data.celda
+    if closest_cell ~= -1
+        Data.celda(j, 1) = closest_cell;
+    end
+end
+
+%}
 
 
 
 
-    % Guardar la estructura procesada de vuelta en la celda
+
+
+
+ %% Guardar la estructura procesada de vuelta en la celda
     datasets{k} = Data;
-   end
+  
 end
 
 % Extraer los datos procesados de nuevo a variables separadas
