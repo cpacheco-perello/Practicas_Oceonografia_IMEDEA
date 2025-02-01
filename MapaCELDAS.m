@@ -24,8 +24,7 @@ setm(ax, 'Frame', 'on', 'Grid', 'on', 'ParallelLabel', 'on', 'MeridianLabel', 'o
 
     % Show country borders
 geoshow(countries, 'FaceColor', [0.3 0.4 0.3], 'EdgeColor', [0.5 0.5 0.5], 'LineWidth', 1,'Parent', ax);
-% Mostrar el contorno de los océanos
-geoshow(ax, S, 'DisplayType', 'line');
+
 
 % Título y etiquetas
 title('Contorno del Mar Mediterráneo');

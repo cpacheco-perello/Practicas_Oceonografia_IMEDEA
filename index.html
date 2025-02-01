@@ -154,9 +154,9 @@
     /* Estilo del contenido */
     .tab-content {
       display: none;
-      max-width: 800px;
+      max-width: 700px;
       margin: 20px auto;
-      background-color: #f4f4f4;;
+      background-color: #ffffff;;
       border-radius: 5px;
       border: 1px solid #ddd;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -209,6 +209,23 @@
       padding: 2% 0% 0% 0% ;
     }
 
+    /* Contenedor de la imagen */
+    .image-container {
+    display: flex;             /* Utiliza flexbox para centrar el contenido */
+    justify-content: center;   /* Centra horizontalmente */
+    align-items: center;       /* Centra verticalmente */
+    padding: 5% 5%; 
+    flex-wrap: nowrap;     /* Añade un pequeño margen debajo de la imagen */
+    }
+
+    /* Imagen centrada */
+    .centered-image {
+    max-width: 100%;  
+    padding: 0% 5%; /* Hace que la imagen no se desborde en pantallas pequeñas */
+    height: auto;      /* Mantiene la relación de aspecto de la imagen */
+    }
+
+
 
     /* Centrar el contenedor que contiene el iframe */
     .video-container {
@@ -237,8 +254,31 @@
       margin-bottom: 20px;
     }
 
+
+        /* Estilos para la tabla */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    td {
+      font-size: 14px;
+    }
+
     /* Estilos para móviles */
-  @media screen and (max-width: 769px) {
+  @media screen and (max-width: 1024px) {
     body {
       font-size: 14px;
     }
@@ -256,7 +296,7 @@
       width: 100%;
       padding:  10% 0px 10% 40%;
       height: 100vh;
-      background-color: #a09b9bcc;
+      background-color: #c0bdbdcd;
       border-right: 1px solid #ddd;
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
       overflow-y: auto;
@@ -265,6 +305,7 @@
 
     .index:hover{
       width: 100%;
+      background-color: #c0bdbdcd;
       
     }
     
@@ -275,16 +316,14 @@
     .index-btn {
       position:fixed;
       bottom:0;   
-      height: 5svh; 
-
+      height: 5vh; 
       width: 100%;
       font-size: 100%;
       display: block;
+      border-radius: 0%;
     }
 
     /* Contenedor de las pestañas */
-
-  
 
     .header-tabs {
       flex-direction: column;
@@ -312,17 +351,23 @@
     }
 
     section h2 {
-      font-size: 180%;
+      font-size: 170%;
       text-align: center;
     }
 
     section h4 {
-      font-size: 150%;
+      font-size: 140%;
       text-align: center;
+      padding: 2% 3%;
+    }
+    
+    section ul{
+      padding: 0% 0%  1% 2%;
     }
 
     section li {
       font-size: 120%;
+      padding: 0% 0%  0% 0%;
     }
 
     .video-container iframe {
@@ -337,114 +382,18 @@
     .logo {
       width: 12%;
     }
+
+    td {
+      font-size: 80%;
+    }
+    .image-container {
+      flex-wrap: wrap;     /* Añade un pequeño margen debajo de la imagen */
+      }
   }
 
-  /* Para pantallas de tablet */
-   /* Para dispositivos de tablet (pantallas entre 769px y 1024px) */
-   @media screen and (min-width: 769px) and (max-width: 1024px) {
-    /* Mostrar el índice cuando se activa */
-    body {
-      font-size: 14px;
-    }
-
-    .container {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .index {
-      position: fixed;  
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      top: 0px;
-      width: 100%;
-      padding:  10% 0px 10% 40%;
-      height: 100vh;
-      background-color: #a09b9bcc;
-      border-right: 1px solid #ddd;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-      overflow-y: auto;
-      display: none;
-    }
-    
-
-    /* El índice ocupa parte de la pantalla debajo del botón */
-
-    /* Ajustar el botón */
-    .index-btn {
-      position: fixed; 
-      bottom: 0;
-      height: 50px;/* Altura fija del botón */
-      width: 100%;
-      font-size: 100%;
-      display: block;
-      background-color: #007BFF; /* Color de fondo */
-      color: white; /* Color de texto */
-      border: none; /* Sin borde */
-      text-align: center; /* Centrar el texto */
-      line-height: 6vh; /* Alinear verticalmente el texto */
-      z-index: 1000; /* Asegura que esté siempre por encima del contenido */
-    }
-
-    /* Contenedor de las pestañas */
-
   
-
-    .header-tabs {
-      flex-direction: column;
-      padding: 2%;
-    }
-
-    h1 {
-      font-size: 120%;
-      text-align: center;
-    }
-
-    .tabs {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      
-    }
-
-    .tab {
-      font-size: 90%;
-      padding: 2% 3%;
-    }
-
-    section {
-      padding: 5%;
-    }
-
-    section h2 {
-      font-size: 180%;
-      text-align: center;
-    }
-
-    section h4 {
-      font-size: 150%;
-      text-align: center;
-    }
-
-    section li {
-      font-size: 120%;
-    }
-
-    .video-container iframe {
-      width: 100%;
-      height: 300px;
-    }
-
-    p {
-      font-size: 110%;
-    }
-
-    .logo {
-      width: 10%;
-    }
   
-  }
+  
 
   
 
@@ -503,11 +452,21 @@
   
 </script>
 <body>
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/7bPy0c2TXTM?autoplay=1&mute=0&controls=0&loop=1&playlist=7bPy0c2TXTM" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none;">
+    </iframe>
+  </div>
           <!-- Botón para abrir/cerrar el índice -->
+  <button class="index-btn" onclick="toggleIndex()">☰</button>
 
 
   <div class="container">
-    <button class="index-btn" onclick="toggleIndex()">☰</button>
+
         <!-- Botón para abrir/cerrar el índice -->
     <!-- Contenedor para el encabezado y las pestañas -->
     <div class="header-tabs">
