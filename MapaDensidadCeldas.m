@@ -11,7 +11,7 @@ countries = readgeotable("C:\Users\pache\Documents\AAB--Practicas\IMEDEA\CODIGO 
 
 %% CONTAR CARACT POR CELDA 
 
-Data=Data_ANC;
+Data=Data_CIC;
 
 
 track = unique(Data.track);  % Obtiene los valores únicos de 'track'
@@ -49,7 +49,7 @@ titulo="ANTICICLONICOS";
 TituloColorbar="Nacimiento";
 
 
-Dato_arepresenter= Cuenta_celdas;
+Dato_arepresenter= vidamedia;
 minC = min(Dato_arepresenter);  % Encuentra el valor mínimo
 maxC = max(Dato_arepresenter);  % Encuentra el valor máximo
 cmap =(cmocean('thermal'));  % Genera un mapa de colores con 80 colores
@@ -69,18 +69,18 @@ geoshow(countries, 'FaceColor', [0.3 0.4 0.3], 'EdgeColor', [0.5 0.5 0.5], 'Line
 % Tomamos los valores de lat y lon para la primera celda
 for j = 1:length(cells)
     value = Dato_arepresenter(j);
-    if value~= 0
-        index = round((value - minC) / (maxC - minC) * (size(cmap, 1) - 1)) + 1;
-        
-        % Extrae el color correspondiente
-        color = cmap(index, :);
-        lon = cells(j).Longitude;
-        lat = cells(j).Latitude;
-        
-        % Rellenar la celda con el color determinado
-         h = fillm(lat, lon, 'FaceColor', color, 'EdgeColor', 'none');  % Dibuja la celda
-        set(h, 'FaceAlpha', 0.8);  % Establece la opacidad a 0.8
-    end
+    
+    index = round((value - minC) / (maxC - minC) * (size(cmap, 1) - 1)) + 1;
+    
+    % Extrae el color correspondiente
+    color = cmap(index, :);
+    lon = cells(j).Longitude;
+    lat = cells(j).Latitude;
+    
+    % Rellenar la celda con el color determinado
+     h = fillm(lat, lon, 'FaceColor', color, 'EdgeColor', 'none');  % Dibuja la celda
+    set(h, 'FaceAlpha', 0.8);  % Establece la opacidad a 0.8
+    
 end
 
 % Título y etiquetas
