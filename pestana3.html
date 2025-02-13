@@ -116,15 +116,111 @@
       <!-- Sección 3 ------------------------------------------->
     <section id="SLA" style="display: none;">
       <h2>SLA y SSH</h2>
-      <div class="image-container">
-        <img src="Recursos\imagen.png" alt="Imagen" class="centered-image">
-        <p>Aquí puedes escribir más sobre el tema. Este es otro párrafo que forma parte de esta sección.</p>
-      </div>
-      <p>Aquí puedes escribir más sobre el tema. Este es otro párrafo que forma parte de esta sección.</p>
+
+      <p>
+        Los satélites de altimetría proporcionan datos desde 1993 a escala global, y se combinan
+        en mapas diarios 2D de la altura de la superficie del mar (SSH) con una resolución de 0.25° x 0.25°.
+        Debido a que los eddies están relacionados con los extremos de SSH a partir de ellos se pueden identificar 
+        los centros de los eddies. 
+      </p>
+
+      <p>
+        En el hemisferio Norte:
+      </p>
+
       <ul>
-        <li>Otro punto importante de la lista</li>
-        <li>Un punto más para considerar</li>
+        <li>Ciclónicos : relacionados con máximos de SSH.</li>
+        <li>Anticiclónicos: relacionados con mínimos de SSH.</li>
       </ul>
+
+      <br>
+      <p style="color: crimson;">¿Como se definen SLA y SSH?</p>
+      <p>Para ello primero es necesario definir algunos conceptos</p>
+      <ul>
+        <li>Geoide</li>
+        <p>Forma que tomaría la superficie del océano si estuviera únicamente bajo la 
+        influencia de la gravedad de la Tierra. Destacar que, en la práctica, 
+        otras fuerzas también contribuyen a las variaciones dinámicas de la 
+        superficie del mar (por ejemplo, los vientos y las mareas).
+        </p>
+
+        <li>Elipsoide de referencia</li>
+
+        <p>El elipsoide de referencia es una superficie que aproxima al geoide y se utiliza para
+        definir el sistema de posicionamiento en la Tierra. Este sistema también se llama sistema 
+        geodésico y se utiliza como origen para la altitud de los altímetros.
+
+        El elipsoide de referencia que se usaba históricamente en el procesamiento de altímetros del 
+        sistema Data Unification and Altimeter Combination System (DUACS) era el Topex/Poseidon. 
+        Desde 2021, el elipsoide WGS84, que también es el de referencia para el GPS, ha reemplazado
+        a este elipsoide histórico.</p>
+
+        <li>NEMO (Nucleus for European Modelling of the Ocean)</li>
+
+        <p>Marco de modelado para actividades de investigación y servicios de 
+        pronóstico en las ciencias del océano y el clima, desarrollado por un 
+        consorcio europeo.
+
+        Los modelos oceánicos Copernicus Marine, basados en el código numérico NEMO (Madec et al. 2022), 
+        aproximan la superficie geopotencial (geoide) a una esfera (White et al., 2005, sección 2).</p>
+
+      </ul>
+
+    
+      <div class="image-container" style="flex-wrap: wrap;">
+        <img src="Recursos\imagen.png" alt="Imagen" class="centered-image">
+        <p>Esquema representativo de las diferentes variables</p>
+      </div>
+      
+      <ul>
+        <li>SSH (Altura de la superficie del mar)</li>
+        <p>Diferencia de altura entre el elipsoide de referencia y la superficie del mar. 
+        Sin embargo, la medición de los altímetros técnicamente mide el alcance (Altimetric range)
+        del altímetro, es decir, la distancia entre la superficie del mar y el satélite. 
+        Conociendo la altitud del satélite, esta medida permite obtener el SSH:
+        <math>
+           (SSH = Altitud – Alcance).
+        </math>
+        En Copernicus Marine, se hace la distinción entre:<br> 
+        <b><i>SSH_model:</i></b> la altura de la superficie del mar sobre el geoide.<br>
+        <b><i>SSH_altimeter:</i></b> la altura de la superficie del mar sobre el elipsoide de referencia.</p>
+
+        <li>ADT (Topografía Dinámica Absoluta)</li>
+        <p>Los métodos numéricos como NEMO producen variable de altura del mar sobre el
+          geoide <b><i>SSH_model</i></b> . Esta variable también se denomina como ADT.
+        </p>
+
+        <li>MSS (Media del nivel de la superficie del mar)</li>
+        <p>La diferencia entre SLA y SSH es la Superficie Media del Mar (MSS). La MSS proporciona el estado
+           promedio a lo largo del tiempo de la superficie del mar.</p>
+        <li>SLA (Anomalía del nivel del Mar)</li>
+        <p>La Anomalía del Nivel del Mar (SLA) es la parte variable de la altura de la superficie del mar (SSH) alrededor de 
+          su estado medio (MSS). Su valor, por lo tanto, depende del período de referencia utilizado para calcular la MSS. Además, 
+          la SLA es también la diferencia entre la Topografía Dinámica Absoluta (ADT) y la Topografía Dinámica Media (MDT).</p>
+        <li>MDT (Topografía Dinámica Media)</li>
+        <p>La MDT es similar a la MSS, pero se encuentra sobre el geoide y no sobre el elipsoide. Los productos de altímetro L3/L4 
+          permiten acceder tanto a la SLA como al ADT o MDT.</p>
+      </ul>
+
+      <p>
+      La MSS y la MDT son representativas de un período temporal específico, también denominado el "período de referencia". 
+      Los productos de altímetro DUACS están referenciados usando el período de referencia [1993, 2012].
+
+      Además, también se utiliza una convención de sesgo de referencia para la SLA. Esta convención consiste en tener una SLA
+      media nula sobre el océano global en el año 1993. Esta convención explica por qué la SLA media global durante el período
+      de referencia no es igual a 0. El valor obtenido es característico del aumento del nivel medio global del mar durante 
+      este período, y se encuentra cerca de los 2.7 cm.
+
+      El geoide utilizado en el procesamiento DUACS está definido por el campo MDT. Por lo tanto, el geoide es susceptible de 
+      cambiar según la versión de MDT utilizada.
+      </p>
+
+
+
+
+
+
+
     </section>
 
 
@@ -142,90 +238,74 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td><b>Amplitud</b></td></tr>
+          <tr><td><b>Amplitud (m) </b></td></tr>
           <tr><td>  Diferencia de altura entre el extremo (máximo o mínimo dependiendo de si es ciclónico(HN) o anticiclónico (HN)) 
             de SSH dentro del eddy y SSH en el contorno efectivo definido.</td></tr>
       
-          <tr><td><b>'cost_association'</b></td></tr>
-          <tr><td>'Cost value to associate one eddy with the next observation'</td></tr>
+          <tr><td><b>Cost_association</b></td></tr>
+          <tr><td>Coste de asociación de un eddy con la siguiente observación.</td></tr>
       
-          <tr><td><b>Effective Area</b></td></tr>
-          <tr><td>Area enclosed by the effective contour in m²</td></tr>
+          <tr><td><b>Effective Area (m²)</b></td></tr>
+          <tr><td>Area cerrada por el contorno efectivo(effective_contour) </td></tr>
       
-          <tr><td><b>'effective_contour_height'</b></td></tr>
-          <tr><td>'SSH filtered height for effective contour'</td></tr>
+          <tr><td><b>Effective contour height (m) </b></td></tr>
+          <tr><td>Altura SSH filtrada del effective contour. </td></tr>
       
-          <tr><td><b>'effective_contour_latitude'</b></td></tr>
-          <tr><td>'Latitudes of effective contour'</td></tr>
+          <tr><td><b>Effective contour latitude (grados norte) / longitude (grados este) </b></td></tr>
+          <tr><td>Latitudes y longitudes del contorno efectivo.</td></tr>
+
+          <tr><td><b>Effective contour shape error (%)</b></td></tr>
+          <tr><td>Error entre el contorno efectivo y su mejor círculo ajustado.</td></tr>
       
-          <tr><td><b>'effective_contour_longitude'</b></td></tr>
-          <tr><td>'Longitudes of the effective contour'</td></tr>
+          <tr><td><b>Effective radius (m)</b></td></tr>
+          <tr><td>Radio del mejor círculo ajustado correspondiente al  effective contour.</td></tr>
       
-          <tr><td><b>'effective_contour_shape_error'</b></td></tr>
-          <tr><td>'Error criterion between the effective contour and its best fit circle'</td></tr>
+          <tr><td><b>Inner_contour_height (m)</b></td></tr>
+          <tr><td>SSH filtrado para el contorno detectado más pequeño.</td></tr>
       
-          <tr><td><b>'effective_radius'</b></td></tr>
-          <tr><td>'Radius of the best fit circle corresponding to the effective contour'</td></tr>
+          <tr><td><b>Latitude (grados norte) /longitude (grados este), latitude_max/longitud_max </b></td></tr>
+          <tr><td>Latitude, longitud del centro del mejor círculo ajustado. 
+            _max : Latitud y longitud del contorno interior.
+          </td></tr>
       
-          <tr><td><b>'inner_contour_height'</b></td></tr>
-          <tr><td>'SSH filtered height for the smallest detected contour'</td></tr>
+          <tr><td><b>Total de contornos</b></td></tr>
+          <tr><td>Total de contornos seleccionados para este eddy.</td></tr>
       
-          <tr><td><b>'latitude'</b></td></tr>
-          <tr><td>'Latitude center of the best fit circle'</td></tr>
+          <tr><td><b>num_point_e / num_point_s</b></td></tr>
+          <tr><td>Número de puntos considerados para el contorno efectivo / de velocidad antes del remuestreo.</td></tr>
       
-          <tr><td><b>'latitude_max'</b></td></tr>
-          <tr><td>'Latitude of the inner contour'</td></tr>
+          <tr><td><b>Observation flag</b></td></tr>
+          <tr><td>Flag indicando si el valor es interpolado entre dos observaciones (0: observed eddy, 1: interpolated eddy)'</td></tr>
       
-          <tr><td><b>'longitude'</b></td></tr>
-          <tr><td>'Longitude center of the best fit circle'</td></tr>
+          <tr><td><b>Observation number</b></td></tr>
+          <tr><td>Dias desde la primera detección, considerando primera detección como 0</td></tr>
       
-          <tr><td><b>'longitude_max'</b></td></tr>
-          <tr><td>'Longitude of the inner contour'</td></tr>
+          <tr><td><b>Speed area  (m²)</b></td></tr>
+          <tr><td>Area encerrada por el contorno de velocidad.</td></tr>
       
-          <tr><td><b>'num_contours'</b></td></tr>
-          <tr><td>'Number of contours selected for this eddy'</td></tr>
+          <tr><td><b>Speed average (m/s)</b></td></tr>
+          <tr><td>Media de la velocidad del contorno que define la escala de radio (speed_radius)</td></tr>
       
-          <tr><td><b>'num_point_e'</b></td></tr>
-          <tr><td>'Number of points for effective contour before resampling'</td></tr>
+          <tr><td><b>Speed contour height (m)</b></td></tr>
+          <tr><td>SSH filtrado para el contorno de velocidad.</td></tr>
       
-          <tr><td><b>'num_point_s'</b></td></tr>
-          <tr><td>'Number of points for speed contour before resampling'</td></tr>
+          <tr><td><b>Speed contour latitude/longitude</b></td></tr>
+          <tr><td>Latitudes y longitudes del contorno de velocidad.</td></tr>
       
-          <tr><td><b>'observation_flag'</b></td></tr>
-          <tr><td>'Flag indicating if the value is interpolated between two observations or not (0: observed eddy, 1: interpolated eddy)'</td></tr>
+          <tr><td><b>Speed contour shape error (%)</b></td></tr>
+          <tr><td>Error entre el contorno de velocidad y su mejor círculo ajustado.</td></tr>
       
-          <tr><td><b>'observation_number'</b></td></tr>
-          <tr><td>'Observation sequence number, days starting at the eddy first detection'</td></tr>
+          <tr><td><b>Speed radius (m)</b></td></tr>
+          <tr><td>RadiO del mejor círculo ajustado correspondiente al  contorno de velocidad circumaverage máxima.</td></tr>
       
-          <tr><td><b>'speed_area'</b></td></tr>
-          <tr><td>'Area enclosed by the speed contour in m²'</td></tr>
+          <tr><td><b>Time</b></td></tr>
+          <tr><td>Dia de esta observación desde 1950-01-01 00:00:00</td></tr>
       
-          <tr><td><b>'speed_average'</b></td></tr>
-          <tr><td>"Average speed of the contour defining the radius scale 'speed_radius'"</td></tr>
+          <tr><td><b>Track</b></td></tr>
+          <tr><td>Número de identificación de la trayectoria.</td></tr>
       
-          <tr><td><b>'speed_contour_height'</b></td></tr>
-          <tr><td>'SSH filtered height for speed contour'</td></tr>
-      
-          <tr><td><b>'speed_contour_latitude'</b></td></tr>
-          <tr><td>'Latitudes of speed contour'</td></tr>
-      
-          <tr><td><b>'speed_contour_longitude'</b></td></tr>
-          <tr><td>'Longitudes of speed contour'</td></tr>
-      
-          <tr><td><b>'speed_contour_shape_error'</b></td></tr>
-          <tr><td>'Error criterion between the speed contour and its best fit circle'</td></tr>
-      
-          <tr><td><b>'speed_radius'</b></td></tr>
-          <tr><td>'Radius of the best fit circle corresponding to the contour of maximum circum-average speed'</td></tr>
-      
-          <tr><td><b>'time'</b></td></tr>
-          <tr><td>'Date of this observation (days since 1950-01-01 00:00:00)'</td></tr>
-      
-          <tr><td><b>'track'</b></td></tr>
-          <tr><td>'Trajectory identification number'</td></tr>
-      
-          <tr><td><b>'uavg_profile'</b></td></tr>
-          <tr><td>'Speed averaged values from the effective contour inwards to the smallest contour, evenly spaced points'</td></tr>
+          <tr><td><b>Uavg profile (m/s)</b></td></tr>
+          <tr><td>Valores de velocidad promediados desde el contorno efectivo hacia adentro hasta el contorno más pequeño, con puntos espaciados uniformemente.</td></tr>
         </tbody>
       </table>
 
