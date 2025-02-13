@@ -9,7 +9,7 @@ lat_max_bound = 50;
 countries = readgeotable("C:\Users\pache\Documents\AAB--Practicas\IMEDEA\CODIGO - DATOS" + ...
     "\\ne_10m_admin_0_countries\ne_10m_admin_0_countries.shp");
 
-%% CONTAR CARACT POR CELDA 
+%% CONTAR  POR CELDA 
 
 Data=Data_CIC;
 
