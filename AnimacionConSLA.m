@@ -69,8 +69,8 @@ gif_filename = 'animacion_mapas.gif'; % Nombre del archivo GIF
 SLA_DATA=load("DATOS\Sea_Level_Data _SEP_2000\Sla_Data_Sep_2000.mat");
 SLA_DATA=SLA_DATA.Sla_Data_Sep_2000;
 [lonS, latS] = meshgrid(SLA_DATA.longitude, SLA_DATA.latitude);
-sla=SLA_DATA.adt; %variable a representar 
-TituloColorbar="Absolute dynamic topography, ADT (m)";
+sla=SLA_DATA.sla; %variable a representar 
+TituloColorbar="Sea level anomaly, SLA (m)";
 
 
 %%  Loop over the time range

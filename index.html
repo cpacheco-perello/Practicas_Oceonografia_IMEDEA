@@ -215,14 +215,15 @@
     justify-content: center;   /* Centra horizontalmente */
     align-items: center;       /* Centra verticalmente */
     padding: 5% 5%; 
-    flex-wrap: nowrap;     /* Añade un pequeño margen debajo de la imagen */
+    flex-wrap: wrap;     /* Añade un pequeño margen debajo de la imagen */
     }
 
     /* Imagen centrada */
     .centered-image {
     max-width: 100%;  
-    padding: 0% 5%; /* Hace que la imagen no se desborde en pantallas pequeñas */
-    height: auto;      /* Mantiene la relación de aspecto de la imagen */
+    padding: 0% 0%; /* Hace que la imagen no se desborde en pantallas pequeñas */
+    height: auto;  
+    border: 1px solid black;   /* Mantiene la relación de aspecto de la imagen */
     }
 
 
@@ -253,6 +254,14 @@
       line-height: 1.2;
       margin-bottom: 20px;
     }
+
+    p.figura {
+    
+      font-size: 100%;
+      font-style: italic;
+      font-weight: bold;
+    }
+
 
 
         /* Estilos para la tabla */
@@ -386,6 +395,13 @@
       font-size: 110%;
     }
 
+    p.figura {
+      font-size: 90%;
+      font-style: italic;
+      font-weight: bold;
+    }
+
+
     .logo {
       width: 12%;
     }
@@ -459,15 +475,7 @@
   
 </script>
 <body>
-  <div class="video-container">
-    <iframe 
-      src="https://www.youtube.com/embed/7bPy0c2TXTM?autoplay=1&mute=0&controls=0&loop=1&playlist=7bPy0c2TXTM" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen
-      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none;">
-    </iframe>
-  </div>
+
           <!-- Botón para abrir/cerrar el índice -->
   <button class="index-btn" onclick="toggleIndex()"> INDEX ☰</button>
 
@@ -545,7 +553,7 @@
     }
     
     // Cargar por defecto el contenido de la primera pestaña
-    loadTab('pestana1');
+    loadTab('pestana3');
   </script>
 </body>
 </html>

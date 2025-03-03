@@ -12,14 +12,14 @@
       <h3 >Índice</h3>
       <ul>
         <li>
-          <a href="javascript:void(0);"onclick="showSection('MapasEvolución',event)" >Mapas Evolución</a>
+          <a href="javascript:void(0);"onclick="showSection('ResumenDatos',event)" >Resumen Datos</a>
           <div class="submenu">
 
           </div>
         </li>
 
         <li>
-          <a href="javascript:void(0);"onclick="showSection('MapasDensidadZon',event)" >Mapas Densidad Zonas</a>
+          <a href="javascript:void(0);"onclick="showSection('MapasEvolución',event)" >Mapas Evolución</a>
           <div class="submenu">
 
           </div>
@@ -33,24 +33,98 @@
         </li>
 
 
-
-
         
       </ul>
     </div>
 
-    <section id="MapasEvolución" style="display: block;" >
-      <h2>Mapas Evolución</h2>
-      <p>Este es un párrafo de conclusión donde puedes resumir los puntos principales.</p>
-      <h4 id="SLA">Representación eddies con data SLA y productos</h4>
+    <!-- Sección ResumenDatos------------------------------------------->
+    <section id="ResumenDatos" style="display:block;" >
+      <h2>Eddies Detectados en todo el Rango temporal</h2>
 
-      <img src="https://raw.githubusercontent.com/cpacheco-perello/Practicas_Oceonografia_IMEDEA/master/animacion_mapas.gif" alt="Animación de mapas">
+      <div class="image-container">
+        <p class="figura">
+          Representación de las localizaciones donde se detectan por primera vez los eddies identificados, 
+          por tipo, ciclónico y anticiclónico.
+        </p>
+        <img src="Imagenes\Nacimientos_RangoCompleto.png" alt="Imagen" class="centered-image">
+      </div>
+
+      <div class="image-container">
+        <p class="figura">
+          Representación de las localizaciones donde se detectan por última vez los eddies identificados, diferenciados por tipo: ciclónico y anticiclónico.
+        </p>
+        <img src="Imagenes\Muertes_RangoCompleto.png" alt="Imagen" class="centered-image">
+      </div>
+
+      <div class="image-container">
+        <p class="figura">
+          Representación de las localizaciones donde se detectan por primera y última vez los eddies identificados, sin diferenciar por tipo.
+        </p>
+        <img src="Imagenes\NacimientosYMuertes_RangoCompleto.png" alt="Imagen" class="centered-image">
+      </div>
 
 
-      <h4 id="SLA">Representación eddies con colormap de Lifetime</h4>
+      <div class="image-container">
+        <p class="figura">
+          Representación de 1% de las trayectorias totales diferenciados por tipo: ciclónico y anticiclónico.
+        </p>
+        <img src="Imagenes\1pocieTrayectoriasPortipo.png" alt="Imagen" class="centered-image">
+      </div>
+
     </section>
 
 
+
+
+
+    <!-- Sección MAPAS EVOLUCION ------------------------------------------->
+    <section id="MapasEvolución" style="display: none;" >
+      <h2>Mapas Evolución</h2>
+      <p>En esta sección se presenta diferentes animaciones en el mes de septiembre del año 2000, se presentan como una muestra que permita 
+        debido al tiempo necesario para computar un rango mayor es demasiado elevado.
+      </p>
+      
+      <h4 id="SLA">Representación eddies con data productos de altimetría</h4><br>
+
+      <div class="image-container">
+        
+        <p class="figura">
+        Animación de los eddies de META3.2 (two satellites) del /09/2000 superpuestos a la Sea Level Anomaly (SLA)
+         del Servicio Marítimo Copernicus. Créditos: E.U. Copernicus Marine Service/CNES/CLS.
+        </p>
+        <img style="border: 1px solid black;" src="Animaciones\SLA_COMB_Sep2000.gif" alt="Animación de mapas">
+      </div>
+
+
+      <div class="image-container">
+        
+        <p class="figura">
+        Animación de los eddies de META3.2 (two satellites) del /09/2000 superpuestos a la Topografía Dinámica
+        Absoluta (ADT) del Servicio Marítimo Copernicus. Créditos: E.U. Copernicus Marine Service/CNES/CLS.
+        </p>
+        <img style="border: 1px solid black;" src="Animaciones\ADT_COMB_SEP2000.gif" alt="Animación de mapas">
+      </div>
+
+
+      <h4 id="SLA">Representación eddies con colormap de Lifetime</h4>
+
+
+      <div class="image-container">
+        
+        <p class="figura">
+        Animación de los eddies de META3.2 (two satellites) del /09/2000 con un colormap rellenando las áreas de los
+        eddies con los datos de Lifetime.
+        </p>
+        <img style="border: 1px solid black;" src="Animaciones\Lifetime_COMB_SEP2000.gif" alt="Animación de mapas">
+      </div>
+
+
+
+
+
+    </section>
+
+    <!-- Sección MapasDensidadCeld------------------------------------------->
     <section id="MapasDensidadCeld" style="display: none;" >
       <h2>Mapas Densidad por celdas</h2>
       <p>Division en celdas del mediterráneo, siendo estas de 1 grado en longitud
@@ -59,16 +133,35 @@
       <div class="image-container">
         <img src="Mapas\MapaCeldas.png" alt="Imagen" class="centered-image">
       </div>
-      <h4 id="SLA">Representación Eddies Nacidos en cada celda</h4>
+
+      <div class="image-container">
+        <p class="figura">
+          Número de nacimientos por celda, separados por tipo de eddies.
+        </p>
+        <img style="border: 1px solid black;" src="Mapas\NacimientosPorTipoCeldas.png" alt="Animación de mapas">
+      </div>
+
+      <div class="image-container">
+        <p class="figura">
+          Número de muertes por celda, separados por tipo de eddies.
+        </p>
+        <img style="border: 1px solid black;" src="Mapas\MuertesPorTipoCeldas.png" alt="Animación de mapas">
+      </div>
+
+      <div class="image-container">
+        <p class="figura">
+          Vida Media por celda, separados por tipo de eddies.
+        </p>
+        <img style="border: 1px solid black;" src="Mapas\VidaMediaPorTipoCeldas.png" alt="Animación de mapas">
+      </div>
+
+
+
+
+     
     </section>
 
-    <section id="MapasDensidadZon" style="display: none;" >
-      <h2>Mapas Densidad por Zonas</h2>
-      <p>Este es un párrafo de conclusión donde puedes resumir los puntos principales.</p>
-      <h4 id="SLA">Representación eddies con data SLA y productos</h4>
 
-      
-    </section>
 
   
   </div>
