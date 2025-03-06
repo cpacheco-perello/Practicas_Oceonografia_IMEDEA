@@ -137,67 +137,6 @@
 
 
 
-
-    <!-- Sección 4 MÉTODOS DE DETECCIÓN  ------------------------------------------->
-    <section id="Metodos" style="display: none;">
-      <h2>Métodos de Identificación</h2>
-      <p>
-        A la hora de identificar y rastrear las trayectorias de los eddies en el océano, se utilizan 
-        principalmente métodos Lagrangianos o Eulerianos. Sin embargo, existen alternativas como métodos 
-        con diferentes aproximaciones. Aunque estos enfoques alternativos también han ganado relevancia, 
-        nos centraremos en los dos más utilizados. En cualquier caso, mayoritariamente los métodos utilizan la información de altimetría proporcionada por 
-        los satélites, estando explicada la información que proporcionan en la sección 
-        <a href="javascript:void(0);" onclick="showSection('SLA',event)">SLA y SSH</a>.
-     </p>
-     <ul>
-       <li>Métodos Lagrangianos</li>
-       <p>
-        Estos métodos se centran en el análisis de las partículas a través de su desplazamiento espacio-temporal, siguiendo su trayectoria 
-        a medida que se mueven con las corrientes oceánicas. Permiten estudiar el transporte de calor, nutrientes y otros elementos en el océano, 
-        proporcionando una visión detallada de las trayectorias. Suelen utilizar los datos obtenidos de satélites y la recopilada por drifters. 
-       </p>
-
-       <li>Métodos Eulerianos</li>
-       <p>
-        Estos métodos se centran en el análisis del flujo oceánico desde un marco de referencia fijo, observando cómo las propiedades del agua, 
-        como la velocidad, temperatura y salinidad, cambian en un punto determinado del espacio a lo largo del tiempo. A diferencia de los métodos Lagrangianos, 
-        que siguen el movimiento de partículas individuales, los métodos Eulerianos permiten estudiar la evolución de estructuras como los eddies mediante datos obtenidos de satélites y boyas ancladas.
-        Permiten estudiar y monitorear la variabilidad de las propiedades del océano en un punto especifico.
-       </p>
-     </ul><br>
-     
-
-     <p style="color: crimson;"><b><i>META3.2 DT</i></b></p>
-
-     <p>
-      
-      <a href="https://www.aviso.altimetry.fr/en/data/products/value-added-products/global-mesoscale-eddy-trajectory-product/meta3-2-dt.html" target="_blank">Mesoscale
-      Eddy Trajectory Atlas Product META3.2 DT</a>
-      producto que proporciona información sobre la trayectoria y características de los eddies de mesoescala en el océano. META3.2 DT, se
-      basa en un enfoque <b><i>Euleriano</i></b>, ya que la detección de eddies se realiza mediante el análisis de campos de altura de la superficie del mar
-      clasificando en cada paso de tiempo los eddies presentes. Luego a partir de un proceso se relacionan eddies en diferentes momentos, obteniéndose
-      asi la evolución de un Eddie a lo largo del tiempo. <br><br>
-      Los datos utilizados en este trabajo serán los proporcionados por Meta3.2DT, específicamente el producto "Two Satellites", el cual hace uso de los datos
-      proporcionados por dos satélites activos simultáneamente durante todo el período de estudio, en lugar de utilizar múltiples satélites activos. Aunque el uso 
-      de múltiples satélites facilita una mayor detección de eddies, al optar por utilizar el rango histórico completo de datos con dos satélites, minimizamos posibles
-      discrepancias derivadas de la variabilidad en el número de satélites y la ruptura del muestreo espaciotemporal homogéneo asociado con el uso de solo dos satélites.
-     </p>
-
-
-     <div class="image-container">
-      <img src="Recursos/META3.2DTex.png" class="centered-image">
-      <p class="figura">
-          Instantánea de los eddies de META3.2 del 25/08/2004 superpuesta en la Topografía Dinámica
-          Absoluta (ADT) del Servicio Marítimo Copernicus. Créditos: E.U. Copernicus Marine Service/CNES/CLS.
-      </p>
-     </div>
-  
-
-    
-
-    </section>
-
-
     <!-- Sección 2 CICLONICOS Y ANTICICLONICOS  ------------------------------------------->
     <section id="CiclonicAnti" style="display: none;">
       <h2>Ciclónicos y Anticiclónicos</h2>
@@ -232,7 +171,6 @@
     
 
     </section>
-
 
 
       <!-- Sección 3 ------------------------------------------->
@@ -341,6 +279,64 @@
 
     </section>
 
+    <!-- Sección 4 MÉTODOS DE DETECCIÓN  ------------------------------------------->
+    <section id="Metodos" style="display: none;">
+      <h2>Métodos de Identificación</h2>
+      <p>
+        A la hora de identificar y rastrear las trayectorias de los eddies en el océano, se utilizan 
+        principalmente métodos Lagrangianos o Eulerianos. Sin embargo, existen alternativas como métodos 
+        con diferentes aproximaciones. Aunque estos enfoques alternativos también han ganado relevancia, 
+        nos centraremos en los dos más utilizados. En cualquier caso, mayoritariamente los métodos utilizan la información de altimetría proporcionada por 
+        los satélites, estando explicada la información que proporcionan en la sección 
+        <a href="javascript:void(0);" onclick="showSection('SLA',event)">SLA y SSH</a>.
+     </p>
+     <ul>
+       <li>Métodos Lagrangianos</li>
+       <p>
+        Estos métodos se centran en el análisis de las partículas a través de su desplazamiento espacio-temporal, siguiendo su trayectoria 
+        a medida que se mueven con las corrientes oceánicas. Permiten estudiar el transporte de calor, nutrientes y otros elementos en el océano, 
+        proporcionando una visión detallada de las trayectorias. Suelen utilizar los datos obtenidos de satélites y la recopilada por drifters. 
+       </p>
+
+       <li>Métodos Eulerianos</li>
+       <p>
+        Estos métodos se centran en el análisis del flujo oceánico desde un marco de referencia fijo, observando cómo las propiedades del agua, 
+        como la velocidad, temperatura y salinidad, cambian en un punto determinado del espacio a lo largo del tiempo. A diferencia de los métodos Lagrangianos, 
+        que siguen el movimiento de partículas individuales, los métodos Eulerianos permiten estudiar la evolución de estructuras como los eddies mediante datos obtenidos de satélites y boyas ancladas.
+        Permiten estudiar y monitorear la variabilidad de las propiedades del océano en un punto especifico.
+       </p>
+     </ul><br>
+     
+
+     <p style="color: crimson;"><b><i>META3.2 DT</i></b></p>
+
+     <p>
+      
+      <a href="https://www.aviso.altimetry.fr/en/data/products/value-added-products/global-mesoscale-eddy-trajectory-product/meta3-2-dt.html" target="_blank">Mesoscale
+      Eddy Trajectory Atlas Product META3.2 DT</a>
+      producto que proporciona información sobre la trayectoria y características de los eddies de mesoescala en el océano. META3.2 DT, se
+      basa en un enfoque <b><i>Euleriano</i></b>, ya que la detección de eddies se realiza mediante el análisis de campos de altura de la superficie del mar
+      clasificando en cada paso de tiempo los eddies presentes. Luego a partir de un proceso se relacionan eddies en diferentes momentos, obteniéndose
+      asi la evolución de un Eddie a lo largo del tiempo. <br><br>
+      Los datos utilizados en este trabajo serán los proporcionados por Meta3.2DT, específicamente el producto "Two Satellites", el cual hace uso de los datos
+      proporcionados por dos satélites activos simultáneamente durante todo el período de estudio, en lugar de utilizar múltiples satélites activos. Aunque el uso 
+      de múltiples satélites facilita una mayor detección de eddies, al optar por utilizar el rango histórico completo de datos con dos satélites, minimizamos posibles
+      discrepancias derivadas de la variabilidad en el número de satélites y la ruptura del muestreo espaciotemporal homogéneo asociado con el uso de solo dos satélites.
+     </p>
+
+
+     <div class="image-container">
+      <img src="Recursos/META3.2DTex.png" class="centered-image">
+      <p class="figura">
+          Instantánea de los eddies de META3.2 del 25/08/2004 superpuesta en la Topografía Dinámica
+          Absoluta (ADT) del Servicio Marítimo Copernicus. Créditos: E.U. Copernicus Marine Service/CNES/CLS.
+      </p>
+     </div>
+  
+
+    
+
+    </section>
 
 
     <!-- Sección 5 ------------------------------------------->
