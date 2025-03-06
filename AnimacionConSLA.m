@@ -5,8 +5,8 @@ clear;
 tic;
 
 numshade = 4; % Number of days for shadow
-colorCic= [1, 0, 0]; % Color for points ciclonic
-colorAnc= [0,0, 1];  % Color for points anticiclonic
+colorCic= [0, 0, 1]; % Color for points ciclonic
+colorAnc= [1,0, 0];  % Color for points anticiclonic
 
 %%Define the time range for animation
 start_date = datetime(1950, 1, 1);   % INICIO DE LA CUENTA DE DIAS DE LOS DATOS
@@ -69,8 +69,8 @@ gif_filename = 'animacion_mapas.gif'; % Nombre del archivo GIF
 SLA_DATA=load("DATOS\Sea_Level_Data _SEP_2000\Sla_Data_Sep_2000.mat");
 SLA_DATA=SLA_DATA.Sla_Data_Sep_2000;
 [lonS, latS] = meshgrid(SLA_DATA.longitude, SLA_DATA.latitude);
-sla=SLA_DATA.sla; %variable a representar 
-TituloColorbar="Sea level anomaly, SLA (m)";
+sla=SLA_DATA.adt; %variable a representar 
+TituloColorbar="Absolute Dynamic Topography, ADT (m)";
 
 
 %%  Loop over the time range
@@ -178,10 +178,10 @@ for dia = time(1):time(2)
     title(['Mapa del Mediterráneo  Fecha: ' datestr(dia_Actual_Fecha)] , 'FontSize', 16);
 
     % Crear un objeto gráfico vacío para la leyenda del color anticiclónico (rojo)
-    h_legend_anticiclonico = plot(NaN, NaN, 'o', 'MarkerFaceColor', colorCic, 'MarkerEdgeColor', 'none');
+    h_legend_anticiclonico = plot(NaN, NaN, 'o', 'MarkerFaceColor', colorAnc, 'MarkerEdgeColor', 'none');
     
     % Crear un objeto gráfico vacío para la leyenda del color ciclónico (azul)
-    h_legend_ciclonico = plot(NaN, NaN, 'o', 'MarkerFaceColor', colorAnc, 'MarkerEdgeColor', 'none');
+    h_legend_ciclonico = plot(NaN, NaN, 'o', 'MarkerFaceColor', colorCic,'MarkerEdgeColor', 'none');
     
     % Añadir la leyenda manualmente
     legend([h_legend_anticiclonico, h_legend_ciclonico], ...
