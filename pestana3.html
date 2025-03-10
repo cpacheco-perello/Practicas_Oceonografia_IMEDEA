@@ -42,11 +42,18 @@
           </div>
         </li>
 
-
         <li>
           <a href="javascript:void(0);" onclick="showSection('Meta3', event)">META3.2 DT</a>
           <div class="submenu">
-            <h4><a href="#Variables" onclick="showSection('Meta3', event)">Variables</a></h4>
+            
+          </div>
+        </li>
+
+
+        <li>
+          <a href="javascript:void(0);" onclick="showSection('VMeta3', event)">Variables META3.2 DT</a>
+          <div class="submenu">
+            
           </div>
         </li>
       </ul>
@@ -148,7 +155,63 @@
 
      <p style="color: crimson;"><b><i>Relación con la presión atmosférica</i></b></p>
 
+     <ul>
+      <li>Ciclónicos : Denominadas a zonas bajas de presión atmosféricas.</li>
+      <li>Anticiclónicos: Denominadas a zonas altas dde presión atmosféricas.</li>
+     </ul>
+
+     <div class="image-container" style="flex-wrap: wrap;">
+      <img src="DescrMETA3\LOWP.jpg" alt="Imagen" class="centered-image">
+      <p class="figura"> Mapa meteorológico en el que se representan las líneas de igual presión atmosférica (isobaras).</p>
+     </div>
+
      <p style="color: crimson;"><b><i>Sentido de Giro</i></b></p>
+
+     <p>
+      El sentido de la rotación de los sistemas ciclónicos y anticiclónicos se debe principalmente a la fuerza de Coriolis, que es el efecto causado
+      por la rotación de la Tierra. Este fenómeno afecta el movimiento de los fluidos (como el aire o el agua) y es responsable de la curvatura de las trayectorias de estos.
+       
+      <br><br>
+
+      El viento alrededor de un ciclón es (casi) geostrófico, por lo que la ecuación de movimiento se puede simplificar a: <br>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <mrow>
+          <mi>f</mi>
+          <mi>k</mi>
+          <mo>&#215;</mo> <!-- Representa el producto cruzado (×) -->
+          <mi>v</mi>
+          <mo>=</mo>
+          <mfrac>
+            <mrow>
+              <mn>-1</mn>
+            </mrow>
+            <mrow>
+              <mi>&#961;</mi>
+            </mrow>
+          </mfrac>
+          <mi>&nabla;</mi>
+          <mi>p</mi>
+        </mrow>
+      </math>
+
+      Donde <strong>f</strong> es el parámetro de Coriolis, <strong>k</strong> es el vector unitario vertical, <strong>v</strong> es el vector 
+      de velocidad del viento, <strong>ρ</strong> es la densidad, y <strong>∇p</strong> es el gradiente de presión.<br><br>
+      Entonces, mirando un esquema de un sistema de baja presión en el hemisferio norte:
+     </p>
+
+
+     <div class="image-container" style="flex-wrap: wrap;">
+      <img src="DescrMETA3\ESQ1.png" alt="Imagen" class="centered-image">
+      <p class="figura"> El gradiente en sí va de baja a alta presión, pero la fuerza tiene la dirección opuesta.</p>
+     </div>
+
+
+     <div class="image-container" style="flex-wrap: wrap;">
+      <img src="DescrMETA3\ESQ2.png" alt="Imagen" class="centered-image">
+      <p class="figura"> Como <strong>f</strong> es positivo en el hemisferio norte, cuando usamos la regla de la mano derecha para los productos cruzados,
+         esto significa que <strong>v</strong> debe estar dirigido de la siguiente manera como se visualiza en la imagen, obteniendo
+        un sentido contra reloj alrededor de la baja presión.</p>
+     </div>
 
 
 
@@ -338,12 +401,111 @@
 
     </section>
 
+  <!-- Sección 5 ------------------------------------------->
+  <section id="Meta3" style="display: none;" >
+          <h2>META3.2 DT</h2>
+          <p> Descripción del producto "Mesoscale Eddy Trajectory Atlas Product META3.2 DT" .</p>
 
-    <!-- Sección 5 ------------------------------------------->
-    <section id="Meta3" style="display: none;" >
-      <h2>META3.2 DT</h2>
-      <p>Este es un párrafo de conclusión donde puedes resumir los puntos principales.</p>
-      <h4 id="Variables">Variables</h4>
+          <h4>Filtrado</h4>
+
+          <p>
+            El campo de la Altura de la Superficie del Mar proporcionada por los satelites de altimetría incluye una amplia gama de productos, 
+            que van desde las de pequeña escala hasta las de gran escala. Los vórtices se identifican como 
+            características con diámetros de 100-300 km, por lo que el primer paso es eliminar la variabilidad de 
+            mayor escala utilizando un "low pass filter". Para ello se suaviza el campo de 
+            la Topografía Dinámica Absoluta (ADT) con un filtro de Lanczos de primer orden, con una longitud de onda de corte de 
+            medio poder de 700 km. El resultado se resta del mapa original de ADT para producir una malla filtrada de paso alto 
+            que contiene solo la variabilidad a mesoescala.
+          </p>
+
+          <div class="image-container" style="flex-wrap: wrap;">
+            <img src="DescrMETA3\LOWPASSFILTER.png" alt="Imagen" class="centered-image">
+            <p class="figura">El filtro aplicado a la Topografía Dinámica Absoluta (ADT) para un mapa de todos los satélites. a) Mapa inicial de ADT. b) 
+              Resultado del ADT filtrado de paso alto utilizado para la detección de vórtices DT 3.2.</p>
+          </div>
+
+
+          <h4>Detección</h4>
+
+          <p>
+            La detección se realiza en dos pasos: <br><br>
+
+            1- Se escanean los contornos cerrados de la ADT entre -100/100 cm con un intervalo de 0.2 cm. Los contornos cerrados que cumplen con los criterios 
+            definidos (error de forma ≤ 70%, amplitud ≤ 0.4 cm, solo un extremo, 5 ≤ Npixel ≤ 1000, sin píxeles enmascarados dentro de un contorno, solo píxeles 
+            con valores SSH dentro (por debajo) del intervalo para ciclones (anticiclones)) se seleccionan y registran como vórtices ciclónicos o anticiclónicos. Los demás contornos 
+            son rechazados.
+          </p>
+
+          <div class="image-container" style="flex-wrap: wrap;">
+            <img src="DescrMETA3\CONTORNOS.png" alt="Imagen" class="centered-image">
+            <p class="figura">Detección de vórtices.
+
+              a) Contornos seleccionados para anticiclones (rojo) y ciclones (azul).
+              b) Contornos rechazados coloreados según sus criterios de rechazo (rojo: error de forma, amarillo: criterios relacionados con la amplitud, azul: valor 
+              enmascarado dentro del contorno, negro: fuera de los límites del número de píxeles).</p>
+          </div>
+
+          <p> 2- Cada contorno se sobre-muestra regularmente multiplicando el número original de puntos por 10. <strong>El centro del vórtice se define como el centro del círculo 
+            que mejor se ajusta al contorno de la velocidad máxima.</strong> Luego, se calcula el radio correspondiente como el radio de este círculo de mejor ajuste. 
+            El centro del vórtice puede diferir de la posición del extremo de la SSH, que corresponde al centro del contorno más pequeño de SSH.</p>
+
+          <div class="image-container" style="flex-wrap: wrap;">
+            <img src="DescrMETA3\EFFECTIVE.png" alt="Imagen" class="centered-image">
+            <p class="figura"></p>
+          </div>
+
+          <p> 
+            Encontramos dos definiciones de contornos, contorno de velocidad y efectivo:<br><br>
+
+            <strong>- Contorno de Velocidad:</strong> Contorno que marca la velocidad geostrófica media más alta alrededor del vórtice detectado, calculada a lo largo de su circunferencia. <br><br>
+
+            <strong>- Contorno Efectivo: </strong> Contorno más grande definido en el paso 1 de la detección.
+            
+          </p>
+
+
+          <h4>Tracking</h4>
+
+          <p> 
+            Después de realizar la detección en varios días consecutivos, se aplica un procedimiento para construir las trayectorias a lo largo del tiempo de los vórtices detectados.<br><br>
+            Procedimiento de seguimiento: Entre dos mapas, se buscan candidatos para asociarlos 
+            a las trayectorias como vórtices cuyos contornos efectivos se superponen. Aquí, el candidato a vórtice se retiene si la relación de superposición, definida como la 
+            relación entre el área superpuesta y la unión de las áreas de los dos vórtices, es mayor al 5%.
+          </p>
+
+          <div class="image-container" style="flex-wrap: wrap;">
+            <img src="DescrMETA3\OVRATIO.png" alt="Imagen" class="centered-image">
+            <img src="DescrMETA3\SUPcont.png" alt="Imagen" class="centered-image">
+            <p class="figura">Contornos sucesivos de vórtices y centros asociados en una trayectoria.</p>
+          </div>
+
+          <p>
+            <strong>Pérdida de la posición del vórtice en uno o varios mapas:</strong><br><br>
+            El procedimiento de seguimiento permite la pérdida de una a cuatro observaciones consecutivas. Esto puede ocurrir en ocasiones debido a los criterios de los umbrales
+             de identificación y/o la calidad del mapa. Luego, el vórtice perdido se reconstruye mediante interpolación. Esta información se proporciona en el archivo en la variable ‘observation_flag’. </p>
+
+          <div class="image-container" style="flex-wrap: wrap;">
+              <img src="DescrMETA3\TRACKLOSS.png" alt="Imagen" class="centered-image">
+              <p class="figura">Procedimiento de seguimiento: el vórtice número 1 se mantiene porque se encuentra una asociación en el mapa J3, a diferencia del vórtice número 2, donde no se 
+                encuentra ninguna asociación en el último mapa.</p>
+          </div>
+
+
+
+
+
+
+  
+
+
+  </section>
+    
+
+
+    <!-- Sección 6 ------------------------------------------->
+  <section id="VMeta3" style="display: none;" >
+      <h2>Variables  META3.2 DT</h2>
+
       <p> Variables incluidas en los archivos de "Mesoscale Eddy Trajectory Atlas Product META3.2 DT" .</p>
       <table>
         <thead>
@@ -451,7 +613,7 @@
           </tr>
         </tbody>
         </table>
-    </section>
+  </section>
     
   </div>
 </body>
